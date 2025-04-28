@@ -1,0 +1,33 @@
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.job-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+}
+
+.company {
+  font-weight: bold;
+  color: #555;
+}
+
+.location, .salary {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.description {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
