@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(-45deg, #00c6ff, #0072ff, #00c6ff, #0072ff);
+  background: linear-gradient(-45deg, #6d7549, #fbf7ef, #6d7549, #fbf7ef);
   background-size: 400% 400%;
   animation: gradientAnimation 15s ease infinite;
   padding: 2rem;
@@ -46,4 +46,31 @@ p {
   padding: 0.75rem 2rem;
   font-size: 1.2rem;
   border-radius: 30px;
+  background-color: #273e4e;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #3d6480;
+}
+
+.main-title {
+  color: #273e4e;
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-weight: bold;
+  font-size: 1.4rem;
+  background: linear-gradient(-45deg, #fbf7ef, #6d7549, #fbf7ef, #6d7549);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* for Firefox */
+  color: transparent;
 }

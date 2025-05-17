@@ -11,3 +11,21 @@
 .navbar-nav .nav-link i {
   margin-right: 0.3rem;
 }
+
+.custom-navbar {
+  background-color: #fbf7ef;
+}
+
+.custom-navbar .nav-link {
+  color: #6d7549 !important;
+}
+
+.custom-navbar .nav-link.active {
+  color: #5c633d !important;
+  font-weight: bold;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #5c633d !important;
+  font-weight: bold;
+}
