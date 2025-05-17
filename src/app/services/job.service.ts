@@ -7,11 +7,15 @@ import { Job } from '../models/job';
   providedIn: 'root'
 })
 export class JobService {
-  private apiUrl = 'http://localhost:8080/api/v1/jobs';  // Update if needed
+  private apiUrl = 'http://localhost:8080/api/v1/jobs';
 
   constructor(private http: HttpClient) {}
 
   getJobs(): Observable<Job[]> {
     return this.http.get<Job[]>(this.apiUrl);
+  }
+
+  createJob(job: Job): Observable<Job> {
+    return this.http.post<Job>(this.apiUrl, job);
   }
 }

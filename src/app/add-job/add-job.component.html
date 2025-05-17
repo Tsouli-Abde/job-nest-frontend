@@ -1,0 +1,250 @@
+<!-- <div class="job-form-container">
+    <h2 class="form-title">Post a New Job</h2>
+
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="styled-form">
+
+        <div class="form-group">
+            <label for="title">Job Title</label>
+            <input id="title" type="text" formControlName="title" class="form-control input-field" />
+            <div *ngIf="jobForm.get('title')?.invalid && jobForm.get('title')?.touched" class="text-danger small">
+                Job title is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" formControlName="description" class="form-control input-field"
+                rows="3"></textarea>
+            <div *ngIf="jobForm.get('description')?.invalid && jobForm.get('description')?.touched"
+                class="text-danger small">
+                Description is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="responsibilities">Responsibilities</label>
+            <textarea id="responsibilities" formControlName="responsibilities" class="form-control input-field"
+                rows="3"></textarea>
+            <div *ngIf="jobForm.get('responsibilities')?.invalid && jobForm.get('responsibilities')?.touched"
+                class="text-danger small">
+                Responsibilities are required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="qualifications">Qualifications</label>
+            <textarea id="qualifications" formControlName="qualifications" class="form-control input-field"
+                rows="3"></textarea>
+            <div *ngIf="jobForm.get('qualifications')?.invalid && jobForm.get('qualifications')?.touched"
+                class="text-danger small">
+                Qualifications are required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input id="location" type="text" formControlName="location" class="form-control input-field" />
+            <div *ngIf="jobForm.get('location')?.invalid && jobForm.get('location')?.touched" class="text-danger small">
+                Location is required.
+            </div>
+        </div>
+
+        <div class="form-group salary-group">
+            <div>
+                <label for="salaryMin">Salary Min</label>
+                <input id="salaryMin" type="number" formControlName="salaryMin" class="form-control input-field" />
+                <div *ngIf="jobForm.get('salaryMin')?.invalid && jobForm.get('salaryMin')?.touched"
+                    class="text-danger small">
+                    Salary min is required and must be ≥ 0.
+                </div>
+            </div>
+
+            <div>
+                <label for="salaryMax">Salary Max</label>
+                <input id="salaryMax" type="number" formControlName="salaryMax" class="form-control input-field" />
+                <div *ngIf="jobForm.get('salaryMax')?.invalid && jobForm.get('salaryMax')?.touched"
+                    class="text-danger small">
+                    Salary max is required and must be ≥ 0.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="type">Type</label>
+            <select id="type" formControlName="type" class="form-select input-field">
+                <option value="">-- Select --</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Part-Time">Part-Time</option>
+                <option value="Freelance">Freelance</option>
+            </select>
+            <div *ngIf="jobForm.get('type')?.invalid && jobForm.get('type')?.touched" class="text-danger small">
+                Type is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="experienceLevel">Experience Level</label>
+            <select id="experienceLevel" formControlName="experienceLevel" class="form-select input-field">
+                <option value="">-- Select --</option>
+                <option value="Junior">Junior</option>
+                <option value="Mid-Level">Mid-Level</option>
+                <option value="Senior">Senior</option>
+            </select>
+            <div *ngIf="jobForm.get('experienceLevel')?.invalid && jobForm.get('experienceLevel')?.touched"
+                class="text-danger small">
+                Experience level is required.
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="jobForm.invalid">Submit Job</button>
+    </form>
+</div> -->
+
+<div class="job-form-container">
+    <h2 class="form-title">Post a New Job</h2>
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="styled-form">
+
+        <!-- Title -->
+        <div class="form-group has-error">
+            <label for="title">Title:</label>
+            <div class="input-wrapper">
+                <input id="title" type="text" formControlName="title" class="form-control input-field"
+                    [ngClass]="{'is-invalid': jobForm.get('title')?.invalid && jobForm.get('title')?.touched}" />
+                <span *ngIf="jobForm.get('title')?.invalid && jobForm.get('title')?.touched"
+                    class="error-icon">&#9888;</span>
+            </div>
+            <div *ngIf="jobForm.get('title')?.invalid && jobForm.get('title')?.touched" class="error-text">
+                Title is required
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group has-error">
+            <label for="description">Description:</label>
+            <div class="input-wrapper">
+                <textarea id="description" formControlName="description" class="form-control input-field" rows="3"
+                    [ngClass]="{'is-invalid': jobForm.get('description')?.invalid && jobForm.get('description')?.touched}"></textarea>
+                <span *ngIf="jobForm.get('description')?.invalid && jobForm.get('description')?.touched"
+                    class="error-icon">&#9888;</span>
+            </div>
+            <div *ngIf="jobForm.get('description')?.invalid && jobForm.get('description')?.touched" class="error-text">
+                Description is required
+            </div>
+        </div>
+
+        <!-- Responsibilities -->
+        <div class="form-group has-error">
+            <label for="responsibilities">Responsibilities:</label>
+            <div class="input-wrapper">
+                <textarea id="responsibilities" formControlName="responsibilities" class="form-control input-field"
+                    rows="3"
+                    [ngClass]="{'is-invalid': jobForm.get('responsibilities')?.invalid && jobForm.get('responsibilities')?.touched}"></textarea>
+                <span *ngIf="jobForm.get('responsibilities')?.invalid && jobForm.get('responsibilities')?.touched"
+                    class="error-icon">&#9888;</span>
+            </div>
+            <div *ngIf="jobForm.get('responsibilities')?.invalid && jobForm.get('responsibilities')?.touched"
+                class="error-text">
+                Responsibilities are required
+            </div>
+        </div>
+
+        <!-- Qualifications -->
+        <div class="form-group has-error">
+            <label for="qualifications">Qualifications:</label>
+            <div class="input-wrapper">
+                <textarea id="qualifications" formControlName="qualifications" class="form-control input-field" rows="3"
+                    [ngClass]="{'is-invalid': jobForm.get('qualifications')?.invalid && jobForm.get('qualifications')?.touched}"></textarea>
+                <span *ngIf="jobForm.get('qualifications')?.invalid && jobForm.get('qualifications')?.touched"
+                    class="error-icon">&#9888;</span>
+            </div>
+            <div *ngIf="jobForm.get('qualifications')?.invalid && jobForm.get('qualifications')?.touched"
+                class="error-text">
+                Qualifications are required
+            </div>
+        </div>
+
+        <!-- Location -->
+        <div class="form-group has-error">
+            <label for="location">Location:</label>
+            <div class="input-wrapper">
+                <input id="location" type="text" formControlName="location" class="form-control input-field"
+                    [ngClass]="{'is-invalid': jobForm.get('location')?.invalid && jobForm.get('location')?.touched}" />
+                <span *ngIf="jobForm.get('location')?.invalid && jobForm.get('location')?.touched"
+                    class="error-icon">&#9888;</span>
+            </div>
+            <div *ngIf="jobForm.get('location')?.invalid && jobForm.get('location')?.touched" class="error-text">
+                Location is required
+            </div>
+        </div>
+
+        <!-- Salary Min / Max -->
+        <div class="form-group salary-group">
+            <div class="has-error">
+                <label for="salaryMin">Salary Min:</label>
+                <div class="input-wrapper">
+                    <input id="salaryMin" type="number" formControlName="salaryMin" class="form-control input-field"
+                        [ngClass]="{'is-invalid': jobForm.get('salaryMin')?.invalid && jobForm.get('salaryMin')?.touched}" />
+                    <span *ngIf="jobForm.get('salaryMin')?.invalid && jobForm.get('salaryMin')?.touched"
+                        class="error-icon">&#9888;</span>
+                </div>
+                <div *ngIf="jobForm.get('salaryMin')?.invalid && jobForm.get('salaryMin')?.touched" class="error-text">
+                    Salary Min is required
+                </div>
+            </div>
+
+            <div class="has-error">
+                <label for="salaryMax">Salary Max:</label>
+                <div class="input-wrapper">
+                    <input id="salaryMax" type="number" formControlName="salaryMax" class="form-control input-field"
+                        [ngClass]="{'is-invalid': jobForm.get('salaryMax')?.invalid && jobForm.get('salaryMax')?.touched}" />
+                    <span *ngIf="jobForm.get('salaryMax')?.invalid && jobForm.get('salaryMax')?.touched"
+                        class="error-icon">&#9888;</span>
+                </div>
+                <div *ngIf="jobForm.get('salaryMax')?.invalid && jobForm.get('salaryMax')?.touched" class="error-text">
+                    Salary Max is required
+                </div>
+            </div>
+        </div>
+
+        <!-- Type -->
+        <div class="form-group has-error">
+            <label for="type">Type:</label>
+            <div class="input-wrapper">
+                <select id="type" formControlName="type" class="form-select input-field"
+                    [ngClass]="{'is-invalid': jobForm.get('type')?.invalid && jobForm.get('type')?.touched}">
+                    <option value="">-- Select --</option>
+                    <option value="Full-Time">Full-Time</option>
+                    <option value="Part-Time">Part-Time</option>
+                    <option value="Freelance">Freelance</option>
+                </select>
+                <span *ngIf="jobForm.get('type')?.invalid && jobForm.get('type')?.touched"
+                    class="error-icon">&#9888;</span>
+            </div>
+            <div *ngIf="jobForm.get('type')?.invalid && jobForm.get('type')?.touched" class="error-text">
+                Type is required
+            </div>
+        </div>
+
+        <!-- Experience Level -->
+        <div class="form-group has-error">
+            <label for="experienceLevel">Experience Level:</label>
+            <div class="input-wrapper">
+                <select id="experienceLevel" formControlName="experienceLevel" class="form-select input-field"
+                    [ngClass]="{'is-invalid': jobForm.get('experienceLevel')?.invalid && jobForm.get('experienceLevel')?.touched}">
+                    <option value="">-- Select --</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Mid-Level">Mid-Level</option>
+                    <option value="Senior">Senior</option>
+                </select>
+                <span *ngIf="jobForm.get('experienceLevel')?.invalid && jobForm.get('experienceLevel')?.touched"
+                    class="error-icon">&#9888;</span>
+            </div>
+            <div *ngIf="jobForm.get('experienceLevel')?.invalid && jobForm.get('experienceLevel')?.touched"
+                class="error-text">
+                Experience level is required
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="jobForm.invalid">Submit Job</button>
+    </form>
+</div>

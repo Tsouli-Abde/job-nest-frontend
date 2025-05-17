@@ -1,10 +1,10 @@
 <div class="job-grid">
   <div *ngFor="let job of jobs" class="job-card">
     <h2>{{ job.title }}</h2>
-    <p class="company">{{ job.company }}</p>
+    <!-- <p class="company">{{ job.company }}</p> -->
     <p class="location">{{ job.location }}</p>
-    <p class="salary">{{ job.salary }}</p>
+    <p class="salary">{{ job.salaryMin }}&euro; - {{ job.salaryMax }}&euro;</p>
     <p class="description">{{ job.description }}</p>
-    <small>Posted at: {{ job.postedAt | date:'shortDate' }}</small>
+    <small>Posted at : {{ job.postedAt | date:'shortDate' }}</small>
   </div>
 </div>
