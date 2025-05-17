@@ -1,0 +1,116 @@
+<div class="job-form-container">
+    <h2 class="form-title">New job</h2>
+
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="styled-form">
+
+        <!-- Title -->
+        <div class="mb-3">
+            <label for="title" class="form-label fw-bold">Job title</label>
+            <input id="title" type="text" class="form-control" formControlName="title" [ngClass]="{
+            'is-invalid': f['title'].invalid && f['title'].touched,
+            'is-valid': f['title'].valid && f['title'].touched
+          }" />
+            <div class="invalid-feedback" *ngIf="f['title'].errors?.['required']">Title is required</div>
+            <div class="invalid-feedback" *ngIf="f['title'].errors?.['minlength']">Minimum 3 characters</div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+            <label for="description" class="form-label fw-bold">Description</label>
+            <textarea id="description" class="form-control" formControlName="description" rows="3" [ngClass]="{
+            'is-invalid': f['description'].invalid && f['description'].touched,
+            'is-valid': f['description'].valid && f['description'].touched
+          }"></textarea>
+            <div class="invalid-feedback" *ngIf="f['description'].errors?.['required']">Description is required</div>
+        </div>
+
+        <!-- Responsibilities -->
+        <div class="mb-3">
+            <label for="responsibilities" class="form-label fw-bold">Responsibilities</label>
+            <textarea id="responsibilities" class="form-control" formControlName="responsibilities" rows="3" [ngClass]="{
+            'is-invalid': f['responsibilities'].invalid && f['responsibilities'].touched,
+            'is-valid': f['responsibilities'].valid && f['responsibilities'].touched
+          }"></textarea>
+            <div class="invalid-feedback" *ngIf="f['responsibilities'].errors?.['required']">Responsibilities are
+                required</div>
+        </div>
+
+        <!-- Qualifications -->
+        <div class="mb-3">
+            <label for="qualifications" class="form-label fw-bold">Qualifications</label>
+            <textarea id="qualifications" class="form-control" formControlName="qualifications" rows="3" [ngClass]="{
+            'is-invalid': f['qualifications'].invalid && f['qualifications'].touched,
+            'is-valid': f['qualifications'].valid && f['qualifications'].touched
+          }"></textarea>
+            <div class="invalid-feedback" *ngIf="f['qualifications'].errors?.['required']">Qualifications are required
+            </div>
+        </div>
+
+        <!-- Location -->
+        <div class="mb-3">
+            <label for="location" class="form-label fw-bold">Location</label>
+            <input id="location" type="text" class="form-control" formControlName="location" [ngClass]="{
+            'is-invalid': f['location'].invalid && f['location'].touched,
+            'is-valid': f['location'].valid && f['location'].touched
+          }" />
+            <div class="invalid-feedback" *ngIf="f['location'].errors?.['required']">Location is required</div>
+        </div>
+
+        <!-- Salary Min / Max -->
+        <div class="mb-3 row">
+            <div class="col-md-6">
+                <label for="salaryMin" class="form-label fw-bold">Salary Min</label>
+                <input id="salaryMin" type="number" class="form-control" formControlName="salaryMin" [ngClass]="{
+              'is-invalid': f['salaryMin'].invalid && f['salaryMin'].touched,
+              'is-valid': f['salaryMin'].valid && f['salaryMin'].touched
+            }" />
+                <div class="invalid-feedback" *ngIf="f['salaryMin'].errors?.['required']">Minimum salary required</div>
+                <div class="invalid-feedback" *ngIf="f['salaryMin'].errors?.['min']">Cannot be negative</div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="salaryMax" class="form-label fw-bold">Salary Max</label>
+                <input id="salaryMax" type="number" class="form-control" formControlName="salaryMax" [ngClass]="{
+              'is-invalid': f['salaryMax'].invalid && f['salaryMax'].touched,
+              'is-valid': f['salaryMax'].valid && f['salaryMax'].touched
+            }" />
+                <div class="invalid-feedback" *ngIf="f['salaryMax'].errors?.['required']">Maximum salary required</div>
+                <div class="invalid-feedback" *ngIf="f['salaryMax'].errors?.['min']">Cannot be negative</div>
+            </div>
+        </div>
+
+        <!-- Type -->
+        <div class="mb-3">
+            <label for="type" class="form-label fw-bold">Type</label>
+            <select id="type" class="form-select" formControlName="type" [ngClass]="{
+            'is-invalid': f['type'].invalid && f['type'].touched,
+            'is-valid': f['type'].valid && f['type'].touched
+          }">
+                <option value="">-- Select --</option>
+                <option value="Full-Time">Full-Time</option>
+                <option value="Part-Time">Part-Time</option>
+                <option value="Freelance">Freelance</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="f['type'].errors?.['required']">Job type is required</div>
+        </div>
+
+        <!-- Experience Level -->
+        <div class="mb-3">
+            <label for="experienceLevel" class="form-label fw-bold">Experience Level</label>
+            <select id="experienceLevel" class="form-select" formControlName="experienceLevel" [ngClass]="{
+            'is-invalid': f['experienceLevel'].invalid && f['experienceLevel'].touched,
+            'is-valid': f['experienceLevel'].valid && f['experienceLevel'].touched
+          }">
+                <option value="">-- Select --</option>
+                <option value="Junior">Junior</option>
+                <option value="Mid-Level">Mid-Level</option>
+                <option value="Senior">Senior</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="f['experienceLevel'].errors?.['required']">Experience level required
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn submit-btn w-100">Submit</button>
+
+    </form>
+</div>

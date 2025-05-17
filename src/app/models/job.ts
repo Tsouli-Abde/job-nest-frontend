@@ -2,8 +2,12 @@ export interface Job {
   id: string;
   title: string;
   description: string;
-  company: string;
+  responsibilities: string;
+  qualifications: string;
   location: string;
-  salary: string;
+  salaryMin: number;
+  salaryMax: number;
+  type: string;
+  experienceLevel: string;
   postedAt: string;
 }
