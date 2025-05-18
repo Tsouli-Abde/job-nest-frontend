@@ -32,3 +32,36 @@
   margin-top: 1rem;
   font-size: 0.95rem;
 }
+
+.posted-date {
+  color: #555;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.posted-date i {
+  font-size: 1rem;
+  margin-right: 0.4rem;
+  color: #6d7549;
+}
+
+.job-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+
+.badge-info {
+  background-color: #273e4eb9;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  font-size: 0.80rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}

@@ -2,9 +2,23 @@
   <div *ngFor="let job of jobs" class="job-card" [routerLink]="['/jobs', job.id]">
     <h2>{{ job.title }}</h2>
     <!-- <p class="company">{{ job.company }}</p> -->
-    <p class="location">{{ job.location }}</p>
-    <p class="salary">{{ job.salaryMin }}&euro; - {{ job.salaryMax }}&euro;</p>
-    <p class="description">{{ job.description }}</p>
-    <small>Posted at : {{ job.postedAt | date:'shortDate' }}</small>
+    <p class="location">📍 {{ job.location }}</p>
+    <div class="job-badges">
+      <span class="badge-info">
+        <i class="bi bi-cash"></i> {{ job.salaryMin }}&euro; - {{ job.salaryMax }}&euro;
+      </span>
+
+      <span class="badge-info">
+        <i class="bi bi-briefcase-fill"></i> {{ job.type }}
+      </span>
+
+      <span class="badge-info">
+        <i class="bi bi-bar-chart"></i> {{ job.experienceLevel }} Level
+      </span>
+    </div>
+    <small class="posted-date">
+      <i class="bi bi-calendar-event me-1"></i>
+      {{ job.postedAt | date:'longDate' }}
+    </small>
   </div>
 </div>
