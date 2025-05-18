@@ -9,6 +9,7 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { JobListComponent } from './pages/job-list/job-list.component';
 import { AddJobComponent } from './add-job/add-job.component';
+import { JobDetailComponent } from './job-detail/job-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AddJobComponent } from './add-job/add-job.component';
     TopBarComponent,
     HomeComponent,
     JobListComponent,
-    AddJobComponent
+    AddJobComponent,
+    JobDetailComponent
   ],
   imports: [
     BrowserModule,

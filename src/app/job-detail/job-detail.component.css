@@ -1,0 +1,95 @@
+.job-detail-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background-color: #ffffff;
+}
+
+.job-detail-card {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    gap: 2rem;
+    background-color: #fdf8ee;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.06);
+}
+
+.job-info {
+    flex: 2;
+}
+
+.job-map-column {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.job-map {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.job-title {
+    color: #273e4e;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.section h5 {
+    font-weight: 700;
+    color: #273e4e;
+    margin-top: 1.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.section p {
+    font-size: 1rem;
+    color: #333;
+}
+
+.posted-date {
+    color: #888;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+.btn-apply {
+    padding: 0.8rem 2rem;
+    background-color: #273e4e;
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-apply:hover {
+    background-color: #3d6480;
+    cursor: pointer;
+}
+
+.job-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin: 1rem 0;
+}
+
+.badge-info {
+    background-color: #6d7549ba;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}

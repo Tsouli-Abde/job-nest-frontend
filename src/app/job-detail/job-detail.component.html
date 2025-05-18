@@ -1,0 +1,45 @@
+<div class="job-detail-wrapper" *ngIf="job">
+    <div class="job-detail-card">
+
+        <div class="job-info">
+            <h1 class="job-title">{{ job.title }}</h1>
+            <div class="job-badges">
+                <span class="badge-info">
+                    <i class="bi bi-cash"></i> {{ job.salaryMin }}&euro; - {{ job.salaryMax }}&euro;
+                </span>
+
+                <span class="badge-info">
+                    <i class="bi bi-briefcase-fill"></i> {{ job.type }}
+                </span>
+
+                <span class="badge-info">
+                    <i class="bi bi-bar-chart"></i> {{ job.experienceLevel }} Level
+                </span>
+            </div>
+            
+
+            <div class="section">
+                <h5>Description</h5>
+                <p>{{ job.description }}</p>
+            </div>
+
+            <div class="section">
+                <h5>Responsibilities</h5>
+                <p>{{ job.responsibilities }}</p>
+            </div>
+
+            <div class="section">
+                <h5>Qualifications</h5>
+                <p>{{ job.qualifications }}</p>
+            </div>
+
+            <p class="posted-date">Posted on : {{ job.postedAt | date:'longDate' }}</p>
+        </div>
+
+        <div class="job-map-column">
+            <div id="job-map" class="job-map"></div>
+            <button class="btn-apply">Apply now</button>
+        </div>
+
+    </div>
+</div>
