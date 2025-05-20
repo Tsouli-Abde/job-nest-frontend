@@ -1,0 +1,52 @@
+.register-form-container {
+    max-width: 750px;
+    margin: 4rem auto;
+    padding: 2.5rem;
+    background-color: #fbf7ef;
+    border-radius: 1rem;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+  }
+  
+  .form-title {
+    font-size: 2rem;
+    color: #273e4e;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .styled-form .form-label {
+    font-weight: 600;
+    color: #273e4e;
+  }
+  
+  .form-control {
+    border-radius: 0.7rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .form-control:focus {
+    border-color: #6d7549;
+    outline: none;
+    box-shadow: 0 0 5px rgba(109, 117, 73, 0.3);
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 2rem;
+    background-color: #3d6480;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #3d6480d7;
+    cursor: pointer;
+  }
+  

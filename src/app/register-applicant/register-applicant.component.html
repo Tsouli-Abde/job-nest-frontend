@@ -1,0 +1,100 @@
+<!-- <div class="container mt-5">
+    <h2 class="text-center mb-4">Create Your Account</h2>
+  
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mx-auto" style="max-width: 600px">
+  
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" id="firstName" formControlName="firstName" class="form-control" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" id="lastName" formControlName="lastName" class="form-control" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-control" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control">
+      </div>
+  
+      <div class="mb-3">
+        <label for="skills" class="form-label">Skills</label>
+        <textarea id="skills" formControlName="skills" rows="3" class="form-control"></textarea>
+      </div>
+  
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" formControlName="username" class="form-control" required>
+      </div>
+  
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" formControlName="password" class="form-control" required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+  
+    </form>
+  </div>
+   -->
+
+<div class="register-form-container">
+  <h2 class="form-title">Create Your Account</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="styled-form" novalidate>
+
+    <div class="mb-3">
+      <label for="firstName" class="form-label fw-bold">First Name</label>
+      <input id="firstName" type="text" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('firstName') }"
+        formControlName="firstName">
+      <div class="invalid-feedback">First name is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="lastName" class="form-label fw-bold">Last Name</label>
+      <input id="lastName" type="text" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('lastName') }"
+        formControlName="lastName">
+      <div class="invalid-feedback">Last name is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label fw-bold">Email</label>
+      <input id="email" type="email" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('email') }"
+        formControlName="email">
+      <div class="invalid-feedback" *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</div>
+      <div class="invalid-feedback" *ngIf="registerForm.get('email')?.errors?.['email']">Enter a valid email.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="phoneNumber" class="form-label fw-bold">Phone Number</label>
+      <input id="phoneNumber" type="text" class="form-control" formControlName="phoneNumber">
+    </div>
+
+    <div class="mb-3">
+      <label for="skills" class="form-label fw-bold">Skills</label>
+      <textarea id="skills" class="form-control" rows="3" formControlName="skills"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="username" class="form-label fw-bold">Username</label>
+      <input id="username" type="text" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('username') }"
+        formControlName="username">
+      <div class="invalid-feedback">Username is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label fw-bold">Password</label>
+      <input id="password" type="password" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('password') }"
+        formControlName="password">
+      <div class="invalid-feedback">Password is required.</div>
+    </div>
+
+    <button type="submit" class="btn submit-btn w-100">Register</button>
+  </form>
+</div>
