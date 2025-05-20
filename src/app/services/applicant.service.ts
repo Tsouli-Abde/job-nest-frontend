@@ -12,4 +12,9 @@ export class ApplicantService {
   register(applicantData: Applicant): Observable<Applicant> {
     return this.http.post<Applicant>(`${this.apiUrl}/register`, applicantData);
   }
+
+  login(credentials: { username: string, password: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, credentials);
+  }
+  
 }
