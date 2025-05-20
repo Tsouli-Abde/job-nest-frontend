@@ -35,6 +35,11 @@
           </a>
         </li>
         
+        <li class="nav-item" *ngIf="authService.isLoggedIn()">
+          <a class="nav-link" (click)="logout()" style="cursor: pointer">
+            <i class="bi bi-box-arrow-right"></i> Logout
+          </a>
+        </li>
       </ul>
     </div>
   </div>
