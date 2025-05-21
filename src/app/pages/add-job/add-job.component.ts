@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { JobService } from '../services/job.service';
+import { JobService } from '../../services/job.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 

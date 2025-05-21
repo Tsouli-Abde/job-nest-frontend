@@ -5,13 +5,25 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
-  styleUrl: './top-bar.component.css'
+  styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent {
   constructor(public authService: AuthService, private router: Router) {}
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
+  }
+
+  get isApplicant(): boolean {
+    return this.authService.getRole() === 'applicant';
+  }
+
+  get isCompany(): boolean {
+    return this.authService.getRole() === 'company';
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 }

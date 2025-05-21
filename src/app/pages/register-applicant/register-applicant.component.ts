@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApplicantService } from '../services/applicant.service';
+import { ApplicantService } from '../../services/applicant.service';
 import Swal from 'sweetalert2';
 
 @Component({

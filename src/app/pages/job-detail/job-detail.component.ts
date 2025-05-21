@@ -1,9 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { JobService } from '../services/job.service';
-import { Job } from '../models/job';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { JobService } from '../../services/job.service';
+import { Job } from '../../models/job';
 import * as L from 'leaflet';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-job-detail',
@@ -16,7 +17,9 @@ export class JobDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private jobService: JobService,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -50,9 +53,17 @@ export class JobDetailComponent implements OnInit {
             iconSize: [0, 0]
           })
         }).addTo(map);
-        
-        marker.bindPopup(`📍 ${this.job.location}`).openPopup();        
+
+        marker.bindPopup(`📍 ${this.job.location}`).openPopup();
       }
     });
+  }
+
+  onApply(): void {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login'], { queryParams: { redirectTo: `/jobs/${this.job.id}` } });
+    } else {
+      alert('Applying to job...');
+    }
   }
 }

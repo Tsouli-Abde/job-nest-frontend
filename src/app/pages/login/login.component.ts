@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
-import { ApplicantService } from '../services/applicant.service';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login-applicant',
-  templateUrl: './login-applicant.component.html',
-  styleUrls: ['./login-applicant.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class LoginApplicantComponent implements OnInit {
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isSubmitted = false;
 
   constructor(
     private fb: FormBuilder,
-    private applicantService: ApplicantService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -32,14 +30,16 @@ export class LoginApplicantComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.loginForm.invalid) return;
-  
-    this.applicantService.login(this.loginForm.value).subscribe({
-      next: (response) => {
-        this.authService.login(response);
-        this.router.navigate(['/']);
+
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (user) => {
+        this.authService.saveUserToLocalStorage(user);
+        const redirectTo = this.route.snapshot.queryParamMap.get('redirectTo') || '/';
+        this.router.navigateByUrl(redirectTo);
+
         Swal.fire({
           icon: 'success',
-          title: 'Welcome back !',
+          title: `Welcome back ${user.role === 'company' ? 'Company' : 'Applicant'}!`,
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
@@ -57,5 +57,10 @@ export class LoginApplicantComponent implements OnInit {
         });
       }
     });
-  }  
+  }
+
+  isFieldInvalid(field: string): boolean {
+    const control = this.loginForm.get(field);
+    return !!control && control.invalid && (control.dirty || control.touched || this.isSubmitted);
+  }
 }
