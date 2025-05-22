@@ -9,6 +9,7 @@ import {RegisterChoiceComponent} from "./pages/register-choice/register-choice.c
 import {RegisterCompanyComponent} from "./pages/register-company/register-company.component";
 import {LoginComponent} from "./pages/login/login.component";
 import { ProfileComponent } from './pages/profile/profile.component';
+import {FooterComponent} from "./components/footer/footer.component";
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'register-company', component: RegisterCompanyComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'footer', component: FooterComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

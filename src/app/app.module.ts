@@ -15,6 +15,7 @@ import { RegisterChoiceComponent } from './pages/register-choice/register-choice
 import { RegisterCompanyComponent } from './pages/register-company/register-company.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     RegisterChoiceComponent,
     RegisterCompanyComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

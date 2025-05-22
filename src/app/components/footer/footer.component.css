@@ -1,0 +1,32 @@
+.custom-footer {
+  background: linear-gradient(-45deg, #273e4e, #6d7549, #273e4e, #6d7549);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  color: #fbf7ef;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 1rem;
+  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.2);
+  border-top: 2px solid #fbf7ef33;
+}
+
+.footer-content p {
+  margin: 0.3rem 0;
+}
+
+.footer-devs {
+  font-style: italic;
+  color: #fbf7efcc;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
