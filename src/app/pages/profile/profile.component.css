@@ -1,0 +1,33 @@
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-label {
+    font-size: 0.95rem;
+}
+
+input.form-control,
+textarea.form-control {
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 2rem;
+    background-color: #273e4e;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #3d6480;
+    cursor: pointer;
+}

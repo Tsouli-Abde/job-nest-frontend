@@ -8,7 +8,9 @@ export class AuthService {
   private readonly key = 'loggedInUser';
   private readonly baseUrl = 'http://localhost:8080/api/v1';
 
-  constructor(private http: HttpClient) {}
+  private currentUser: any = this.getCurrentUser();
+
+  constructor(private http: HttpClient) { }
 
   login(credentials: { username: string; password: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/applicants/login`, credentials).pipe(
@@ -26,6 +28,7 @@ export class AuthService {
   }
 
   logout(): void {
+    this.currentUser = null;
     localStorage.removeItem(this.key);
   }
 
@@ -41,5 +44,12 @@ export class AuthService {
   getRole(): 'applicant' | 'company' | null {
     const user = this.getCurrentUser();
     return user?.role ?? null;
+  }
+
+  setCurrentUser(updatedUser: any): void {
+    if (!updatedUser.role) {
+      updatedUser.role = this.getRole();
+    }
+    localStorage.setItem(this.key, JSON.stringify(updatedUser));
   }
 }

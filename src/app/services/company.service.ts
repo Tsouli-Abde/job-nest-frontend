@@ -15,4 +15,8 @@ export class CompanyService {
   login(credentials: { username: string, password: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, credentials);
   }
+
+  updateCompany(id: string, updatedCompany: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${id}`, updatedCompany);
+  } 
 }

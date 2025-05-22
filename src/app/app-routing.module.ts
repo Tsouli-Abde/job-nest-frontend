@@ -8,6 +8,7 @@ import { RegisterApplicantComponent } from './pages/register-applicant/register-
 import {RegisterChoiceComponent} from "./pages/register-choice/register-choice.component";
 import {RegisterCompanyComponent} from "./pages/register-company/register-company.component";
 import {LoginComponent} from "./pages/login/login.component";
+import { ProfileComponent } from './pages/profile/profile.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'register-choice', component: RegisterChoiceComponent },
   { path: 'register-company', component: RegisterCompanyComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

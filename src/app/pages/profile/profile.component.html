@@ -1,0 +1,68 @@
+<div class="profile-container" *ngIf="profileForm">
+    <h2 class="mb-4 d-flex align-items-center">
+        <i class="bi bi-person-circle me-2 fs-3 text-dark"></i>
+        <br>
+        <br>
+        <span class="fw-bold text-dark">Profile</span>
+    </h2>
+
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="p-4 rounded shadow-sm bg-white border">
+
+        <!-- Username (readonly) -->
+        <div class="mb-3">
+            <label for="username" class="form-label fw-semibold text-dark">Username</label>
+            <input type="text" id="username" class="form-control" formControlName="username" readonly>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label fw-semibold text-dark">Email</label>
+            <input type="email" id="email" class="form-control" formControlName="email">
+        </div>
+
+        <!-- First Name (applicant only) -->
+        <div class="mb-3" *ngIf="isApplicant">
+            <label for="firstName" class="form-label fw-semibold text-dark">First Name</label>
+            <input type="text" id="firstName" class="form-control" formControlName="firstName">
+        </div>
+
+        <!-- Last Name (applicant only) -->
+        <div class="mb-3" *ngIf="isApplicant">
+            <label for="lastName" class="form-label fw-semibold text-dark">Last Name</label>
+            <input type="text" id="lastName" class="form-control" formControlName="lastName">
+        </div>
+
+        <!-- Company Name (company only) -->
+        <div class="mb-3" *ngIf="!isApplicant">
+            <label for="companyName" class="form-label fw-semibold text-dark">Company Name</label>
+            <input type="text" id="companyName" class="form-control" formControlName="companyName">
+        </div>
+
+        <!-- Industry (company only) -->
+        <div class="mb-3" *ngIf="!isApplicant">
+            <label for="industry" class="form-label fw-semibold text-dark">Industry</label>
+            <input type="text" id="industry" class="form-control" formControlName="industry">
+        </div>
+
+        <!-- Phone Number -->
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label fw-semibold text-dark">Phone Number</label>
+            <input type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber">
+        </div>
+
+        <!-- Skills (applicant only) -->
+        <div class="mb-3" *ngIf="isApplicant">
+            <label for="skills" class="form-label fw-semibold text-dark">Skills</label>
+            <textarea id="skills" rows="3" class="form-control" formControlName="skills"></textarea>
+        </div>
+
+        <!-- Password (hidden) -->
+        <input type="hidden" formControlName="password" />
+
+        <br>
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">
+            <i class="bi bi-save me-2"></i>Save Changes
+        </button>
+    </form>
+</div>
