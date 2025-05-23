@@ -1,26 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly key = 'loggedInUser';
   private readonly baseUrl = 'http://localhost:8080/api/v1';
 
-  private currentUser: any = this.getCurrentUser();
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  loginApplicant(credentials: { username: string; password: string }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/applicants/login`, credentials);
+  }
 
-  login(credentials: { username: string; password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/applicants/login`, credentials).pipe(
-      map((res: any) => ({ ...res, role: 'applicant' })),
-      catchError(() => {
-        return this.http.post(`${this.baseUrl}/companies/login`, credentials).pipe(
-          map((res: any) => ({ ...res, role: 'company' }))
-        );
-      })
-    );
+  loginCompany(credentials: { username: string; password: string }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/companies/login`, credentials);
   }
 
   saveUserToLocalStorage(user: any): void {
@@ -28,7 +22,6 @@ export class AuthService {
   }
 
   logout(): void {
-    this.currentUser = null;
     localStorage.removeItem(this.key);
   }
 

@@ -20,9 +20,10 @@ const routes: Routes = [
   { path: 'register-applicant', component: RegisterApplicantComponent },
   { path: 'register-choice', component: RegisterChoiceComponent },
   { path: 'register-company', component: RegisterCompanyComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'footer', component: FooterComponent },
+  { path: 'login', component: LoginComponent, data: { userType: 'applicant' } },
+  { path: 'login-company', component: LoginComponent, data: { userType: 'company' } },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
