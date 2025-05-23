@@ -1,24 +1,74 @@
-<div class="job-grid">
-  <div *ngFor="let job of jobs" class="job-card" [routerLink]="['/jobs', job.id]">
-    <h2>{{ job.title }}</h2>
-    <!-- <p class="company">{{ job.company }}</p> -->
-    <p class="location">📍 {{ job.location }}</p>
-    <div class="job-badges">
-      <span class="badge-info">
-        <i class="bi bi-cash"></i> {{ job.salaryMin }}&euro; - {{ job.salaryMax }}&euro;
-      </span>
+<div class="container mx-3 my-5">
+  <div class="row">
+    <!-- Sidebar filters (left) -->
+    <div class="col-md-3">
+      <form [formGroup]="filterForm" (ngSubmit)="applyFilters()" class="filter-sidebar p-3 shadow-sm rounded bg-white border">
+        <h5 class="fw-bold mb-3">Search Filters</h5>
 
-      <span class="badge-info">
-        <i class="bi bi-briefcase-fill"></i> {{ job.type }}
-      </span>
+        <div class="mb-3">
+          <label class="form-label">Location</label>
+          <input type="text" class="form-control" formControlName="location" placeholder="e.g. Paris">
+        </div>
 
-      <span class="badge-info">
-        <i class="bi bi-bar-chart"></i> {{ job.experienceLevel }} Level
-      </span>
+        <div class="mb-3">
+          <label class="form-label">Job Type</label>
+          <select class="form-select" formControlName="type">
+            <option value="">All</option>
+            <option value="Full-Time">Full-Time</option>
+            <option value="Part-Time">Part-Time</option>
+            <option value="Freelance">Freelance</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Experience</label>
+          <select class="form-select" formControlName="experienceLevel">
+            <option value="">All</option>
+            <option value="Junior">Junior</option>
+            <option value="Mid-Level">Mid-Level</option>
+            <option value="Senior">Senior</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Min Salary (€)</label>
+          <input type="number" class="form-control" formControlName="salaryMin">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Max Salary (€)</label>
+          <input type="number" class="form-control" formControlName="salaryMax">
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">
+          <i class="bi bi-search me-1"></i> Apply
+        </button>
+      </form>
     </div>
-    <small class="posted-date">
-      <i class="bi bi-calendar-event me-1"></i>
-      {{ job.postedAt | date:'longDate' }}
-    </small>
+
+    <!-- Job cards (right) -->
+    <div class="col-md-9">
+      <div class="job-grid">
+        <div *ngFor="let job of jobs" class="job-card" [routerLink]="['/jobs', job.id]">
+          <h2>{{ job.title }}</h2>
+          <p class="location">📍 {{ job.location }}</p>
+          <div class="job-badges">
+            <span class="badge-info">
+              <i class="bi bi-cash"></i> {{ job.salaryMin }}€ - {{ job.salaryMax }}€
+            </span>
+            <span class="badge-info">
+              <i class="bi bi-briefcase-fill"></i> {{ job.type }}
+            </span>
+            <span class="badge-info">
+              <i class="bi bi-bar-chart"></i> {{ job.experienceLevel }}
+            </span>
+          </div>
+          <small class="posted-date">
+            <i class="bi bi-calendar-event me-1"></i>
+            {{ job.postedAt | date:'longDate' }}
+          </small>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

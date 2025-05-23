@@ -65,3 +65,68 @@
   gap: 0.5rem;
   font-weight: 500;
 }
+
+/* Container style */
+form.shadow-sm {
+  background-color: #fdfbf6;
+  /* ton beige doux */
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Label styling */
+form .form-label {
+  font-weight: 600;
+  color: #2d2d2d;
+  font-size: 0.95rem;
+}
+
+/* Input + Select */
+form .form-control,
+form .form-select {
+  border-radius: 0.6rem;
+  border: 1px solid #dcdcdc;
+  background-color: #ffffff;
+  box-shadow: none;
+  transition: border-color 0.3s;
+}
+
+form .form-control:focus,
+form .form-select:focus {
+  border-color: #5d7f3e;
+  box-shadow: 0 0 0 0.15rem rgba(93, 127, 62, 0.2);
+}
+
+/* Submit button */
+form button.btn-primary {
+  background-color: #273e4e;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.45rem 1.2rem;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+form button.btn-primary:hover {
+  background-color: #273e4eb9;
+}
+
+.filter-sidebar {
+  background-color: #fdfbf6;
+  border-radius: 1rem;
+  border: 1px solid #eee;
+}
+
+.badge-info {
+  display: inline-block;
+  background-color: #4b5c6b;
+  color: white;
+  padding: 0.35rem 0.7rem;
+  margin-right: 0.4rem;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+}
