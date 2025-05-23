@@ -27,13 +27,25 @@ export class ApplyFormComponent implements OnInit {
 
   ngOnInit(): void {
     const user = this.authService.getCurrentUser();
-    if (!user || user.role !== 'applicant') {
-      this.router.navigate(['/login']); // sécurité
+    const role = this.authService.getRole();
+    if (!user || role !== 'applicant') {
+      console.log( "user.type = ", role)
+      this.router.navigate(['/login']);
       return;
     }
 
     this.applicant = user;
     this.jobId = this.route.snapshot.paramMap.get('id')!;
+
+    // Check if already applied
+    this.applicationService.hasAlreadyApplied(this.applicant.id, this.jobId).subscribe({
+      next: (applied) => {
+        if (applied) {
+          Swal.fire('Notice', 'You have already applied for this job.', 'info');
+          this.router.navigate(['/jobs', this.jobId]);
+        }
+      }
+    });
 
     this.applyForm = this.fb.group({
       coverLetter: ['', Validators.required]
@@ -52,8 +64,9 @@ export class ApplyFormComponent implements OnInit {
 
     this.applicationService.submitApplication(application).subscribe({
       next: () => {
-        Swal.fire('Success', 'Your application has been submitted!', 'success');
-        this.applyForm.reset();
+        Swal.fire('Success', 'Your application has been submitted!', 'success').then(() => {
+          this.router.navigate(['/jobs', this.jobId]);
+        });
       },
       error: () => {
         Swal.fire('Error', 'Failed to submit application', 'error');

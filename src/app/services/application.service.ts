@@ -19,4 +19,10 @@ export class ApplicationService {
   getApplicationsByApplicant(applicantId: string): Observable<Application[]> {
     return this.http.get<Application[]>(`${this.apiUrl}/applicant/${applicantId}`);
   }
+  
+  hasAlreadyApplied(applicantId: string, jobId: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/has-applied`, {
+      params: { applicantId, jobId }
+    });
+  }  
 }

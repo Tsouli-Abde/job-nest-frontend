@@ -5,6 +5,7 @@ import { Job } from '../../models/job';
 import * as L from 'leaflet';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { ApplicationService } from '../../services/application.service';
 
 @Component({
   selector: 'app-job-detail',
@@ -13,23 +14,55 @@ import { AuthService } from '../../services/auth.service';
 })
 export class JobDetailComponent implements OnInit {
   job!: Job;
+  hasApplied = false;
+  private jobId!: string;
 
   constructor(
     private route: ActivatedRoute,
     private jobService: JobService,
     private http: HttpClient,
     private authService: AuthService,
+    private applicationService: ApplicationService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.jobService.getJobById(id).subscribe((job) => {
+    this.jobId = this.route.snapshot.paramMap.get('id')!;
+    this.loadJobDetails();
+
+    if (this.jobId) {
+      const currentUser = this.authService.getCurrentUser();
+      this.jobService.getJobById(this.jobId).subscribe(job => {
         this.job = job;
-        this.loadMap();
+  
+        if (currentUser?.id) {
+          this.applicationService.hasAlreadyApplied(currentUser.id, this.jobId).subscribe(res => {
+            this.hasApplied = res;
+          });
+        }
       });
     }
+  }
+
+  loadJobDetails(): void {
+    this.jobService.getJobById(this.jobId).subscribe({
+      next: (job) => {
+        this.job = job;
+        this.loadMap();
+
+        const user = this.authService.getCurrentUser();
+        if (user?.type === 'applicant') {
+          this.applicationService.hasAlreadyApplied(user.id, this.jobId).subscribe({
+            next: (res) => this.hasApplied = res,
+            error: () => this.hasApplied = false
+          });
+        }
+      },
+      error: () => {
+        console.error('Job not found or error fetching job');
+        this.router.navigate(['/jobs']);
+      }
+    });
   }
 
   loadMap(): void {
@@ -61,9 +94,11 @@ export class JobDetailComponent implements OnInit {
 
   onApply(): void {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/login'], { queryParams: { redirectTo: `/jobs/${this.job.id}` } });
+      this.router.navigate(['/login'], {
+        queryParams: { redirectTo: `/jobs/${this.jobId}` }
+      });
     } else {
-      this.router.navigate([`/jobs/${this.job.id}/apply`]);
+      this.router.navigate([`/jobs/${this.jobId}/apply`]);
     }
   }
 }

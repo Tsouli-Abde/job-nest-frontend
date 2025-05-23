@@ -38,7 +38,10 @@
 
         <div class="job-map-column">
             <div id="job-map" class="job-map"></div>
-          <button class="btn-apply" (click)="onApply()">Apply now</button>
+          <button class="btn-apply" [disabled]="hasApplied" (click)="onApply()">
+            {{ hasApplied ? 'Already Applied' : 'Apply now' }}
+          </button>
+          
         </div>
 
     </div>
