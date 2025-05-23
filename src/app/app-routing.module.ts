@@ -10,6 +10,8 @@ import {RegisterCompanyComponent} from "./pages/register-company/register-compan
 import {LoginComponent} from "./pages/login/login.component";
 import { ProfileComponent } from './pages/profile/profile.component';
 import {FooterComponent} from "./components/footer/footer.component";
+import { ApplyFormComponent } from './pages/apply-form/apply-form.component';
+import { ApplicantApplicationsComponent } from './pages/applicant-applications/applicant-applications.component';
 
 
 const routes: Routes = [
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'footer', component: FooterComponent },
   { path: 'login', component: LoginComponent, data: { userType: 'applicant' } },
   { path: 'login-company', component: LoginComponent, data: { userType: 'company' } },
+  { path: 'jobs/:id/apply', component: ApplyFormComponent },
+  { path: 'applications', component: ApplicantApplicationsComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

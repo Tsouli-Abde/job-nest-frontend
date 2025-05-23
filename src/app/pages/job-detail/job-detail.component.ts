@@ -63,7 +63,7 @@ export class JobDetailComponent implements OnInit {
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login'], { queryParams: { redirectTo: `/jobs/${this.job.id}` } });
     } else {
-      alert('Applying to job...');
+      this.router.navigate([`/jobs/${this.job.id}/apply`]);
     }
   }
 }

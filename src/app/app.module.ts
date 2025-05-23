@@ -16,6 +16,8 @@ import { RegisterCompanyComponent } from './pages/register-company/register-comp
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ApplyFormComponent } from './pages/apply-form/apply-form.component';
+import { ApplicantApplicationsComponent } from './pages/applicant-applications/applicant-applications.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { FooterComponent } from './components/footer/footer.component';
     RegisterCompanyComponent,
     LoginComponent,
     ProfileComponent,
-    FooterComponent
+    FooterComponent,
+    ApplyFormComponent,
+    ApplicantApplicationsComponent
   ],
   imports: [
     BrowserModule,

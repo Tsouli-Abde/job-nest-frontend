@@ -1,0 +1,93 @@
+/* Container principal */
+.apply-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Titre principal */
+.apply-container h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* Bloc profil */
+.applicant-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fbf7ef;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    border: 1px solid #e0e0e0; 
+}
+
+.applicant-info .info-text {
+    font-size: 1rem;
+    color: #333;
+}
+
+.applicant-info .info-text small {
+    color: #777;
+}
+
+/* Bouton modifier profil */
+.applicant-info .edit-profile-btn {
+    background-color: #273e4e;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.applicant-info .edit-profile-btn:hover {
+    background-color: #273e4eac;
+    color: #ffffff;
+}
+
+/* Formulaire */
+form label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #333;
+}
+
+form textarea {
+    width: 100%;
+    min-height: 160px;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    font-size: 1rem;
+    resize: vertical;
+    background-color: #fbf7efbb;
+    color: #333;
+}
+
+form button {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    background-color: #273e4e;
+    color: white;
+    transition: background-color 0.2s ease-in-out;
+}
+
+form button:hover {
+    background-color: #273e4eac;
+}

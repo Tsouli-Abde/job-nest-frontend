@@ -1,0 +1,60 @@
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+}
+
+.card {
+    border: 1px solid #273e4e;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background-color: #273e4e;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.card h5 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+}
+
+.card p {
+    margin: 0.25rem 0;
+    color: #ffffff;
+    font-size: 0.95rem;
+}
+
+.card strong {
+    color: #ffffff;
+}
+
+.card .btn {
+    background-color: #ffffff;
+    border: none;
+    color: 273e4e;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.card .btn:hover {
+    background-color: #ffffffaf;
+}
+
+.card .d-flex {
+    margin-bottom: 0.75rem;
+}
