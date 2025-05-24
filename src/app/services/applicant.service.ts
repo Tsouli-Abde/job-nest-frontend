@@ -15,10 +15,13 @@ export class ApplicantService {
 
   login(credentials: { username: string, password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials);
-  } 
+  }
 
   updateApplicant(id: string, updatedApplicant: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, updatedApplicant);
   }
-  
+
+  getApplicantById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
 }

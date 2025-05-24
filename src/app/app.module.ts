@@ -18,6 +18,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ApplyFormComponent } from './pages/apply-form/apply-form.component';
 import { ApplicantApplicationsComponent } from './pages/applicant-applications/applicant-applications.component';
+import { CompanyJobsComponent } from './pages/company-jobs/company-jobs.component';
+import { ApplicantProfileComponent } from './pages/applicant-profile/applicant-profile.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ApplicantApplicationsComponent } from './pages/applicant-applications/a
     ProfileComponent,
     FooterComponent,
     ApplyFormComponent,
-    ApplicantApplicationsComponent
+    ApplicantApplicationsComponent,
+    CompanyJobsComponent,
+    ApplicantProfileComponent
   ],
   imports: [
     BrowserModule,

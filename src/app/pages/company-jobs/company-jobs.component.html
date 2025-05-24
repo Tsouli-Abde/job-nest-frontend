@@ -1,0 +1,65 @@
+<div class="container py-5">
+  <h2 class="main-title text-center mb-5">
+    <i class="bi bi-briefcase-fill me-2"></i> Your Posted Jobs
+  </h2>
+
+  <div *ngIf="jobs.length === 0" class="alert alert-light text-center border-0 shadow-sm" style="background-color: #fbf7ef;">
+    <i class="bi bi-info-circle me-2 text-warning"></i> You haven't posted any jobs yet.
+  </div>
+
+  <div *ngFor="let job of jobs" class="card border-0 shadow mb-5 position-relative" style="background-color: #fbf7ef;">
+    <div class="card-body pb-5">
+
+      <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+          <h4 class="fw-bold text-dark mb-1">{{ job.title }}</h4>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge bg-dark px-3 py-2">{{ job.type }}</span>
+            <span class="badge bg-secondary px-3 py-2">Exp: {{ job.experienceLevel }}</span>
+            <span class="badge bg-success px-3 py-2">Salary: €{{ job.salaryMin }} - €{{ job.salaryMax }}</span>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-secondary btn-sm" title="Edit Job">
+            <i class="bi bi-pencil-fill"></i>
+          </button>
+          <button class="btn btn-outline-danger btn-sm" title="Delete Job">
+            <i class="bi bi-trash3-fill"></i>
+          </button>
+        </div>
+      </div>
+
+      <p class="text-muted mb-4">{{ job.description }}</p>
+
+      <div>
+        <h5 class="subtitle mb-3">
+          <i class="bi bi-person-lines-fill me-2"></i> Applicants
+        </h5>
+
+        <div *ngIf="!job.applications || job.applications.length === 0" class="text-muted fst-italic">
+          No applicants yet.
+        </div>
+
+        <ul *ngIf="job.applications?.length > 0" class="list-group list-group-flush rounded shadow-sm">
+          <li *ngFor="let app of job.applications" class="list-group-item d-flex justify-content-between align-items-center bg-white">
+            <div>
+              <i class="bi bi-person-circle text-primary me-2"></i>
+              <strong>{{ app.applicant.firstName }} {{ app.applicant.lastName }}</strong>
+              <span class="text-muted small d-block">{{ app.applicant.email }}</span>
+            </div>
+            <a [routerLink]="['/applicant-profile', app.id]" class="btn btn-primary btn-sm">
+              View Profile
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="position-absolute bottom-0 end-0 pe-4 pb-3 text-muted small text-end">
+        <div>
+          <i class="bi bi-calendar-event me-1 text-primary"></i>{{ job.postedAt | date:'mediumDate' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

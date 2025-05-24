@@ -22,7 +22,14 @@
           </a>
         </li>
 
-        <li class="nav-item dropdown" *ngIf="authService.isLoggedIn()" style="margin-left: 1rem;">
+        <!-- Shown only for logged-in companies -->
+        <li class="nav-item" *ngIf="isCompany">
+          <a class="nav-link" [routerLink]="['/post-job']">
+            <i class="bi bi-upload"></i> Post a Job
+          </a>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="authService.isLoggedIn()">
           <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-circle"></i>
             <span>{{ authService.getCurrentUser()?.username }}</span>
@@ -39,7 +46,7 @@
               </a>
             </li>
             <li *ngIf="authService.getRole() === 'company'">
-              <a class="dropdown-item" [routerLink]="['/my-jobs']">
+              <a class="dropdown-item" [routerLink]="['/company-jobs']">
                 <i class="bi bi-briefcase"></i> My Jobs
               </a>
             </li>
@@ -50,13 +57,6 @@
               </a>
             </li>
           </ul>
-        </li>
-
-        <!-- Shown only for logged-in companies -->
-        <li class="nav-item" *ngIf="isCompany">
-          <a class="nav-link" [routerLink]="['/post-job']">
-            <i class="bi bi-upload"></i> Post a Job
-          </a>
         </li>
 
         <li class="nav-item dropdown login-dropdown" *ngIf="!authService.isLoggedIn()">

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {Job} from "../models/job";
 
 @Injectable({ providedIn: 'root' })
 export class CompanyService {
@@ -18,5 +19,9 @@ export class CompanyService {
 
   updateCompany(id: string, updatedCompany: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/${id}`, updatedCompany);
-  } 
+  }
+
+  getCompanyJobs(companyId: string): Observable<Job[]> {
+    return this.http.get<Job[]>(`${this.baseUrl}/${companyId}/jobs`);
+  }
 }

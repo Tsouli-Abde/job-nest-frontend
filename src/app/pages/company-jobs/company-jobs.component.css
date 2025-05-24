@@ -1,0 +1,20 @@
+.card {
+  border-radius: 1rem;
+}
+
+.list-group-item {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+
+.badge.bg-dark {
+  background-color: #273e4e !important;
+}
+
+.btn-primary {
+  background-color: #273e4e;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #3d6480;
+}

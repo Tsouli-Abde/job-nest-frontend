@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
     const role = this.authService.getRole();
     console.log('Detected role:', role);
     this.isApplicant = role === 'applicant';
-  
+
     if (this.isApplicant) {
       this.profileForm = this.fb.group({
         username: [user.username],

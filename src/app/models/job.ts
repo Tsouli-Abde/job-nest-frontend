@@ -10,4 +10,8 @@ export interface Job {
   type: string;
   experienceLevel: string;
   postedAt: string;
+  company: {
+    id: string;
+    companyName: string;
+  };
 }

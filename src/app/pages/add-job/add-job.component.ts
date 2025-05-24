@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JobService } from '../../services/job.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-add-job',
@@ -15,7 +16,8 @@ export class AddJobComponent {
   constructor(
     private fb: FormBuilder,
     private jobService: JobService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.jobForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
@@ -50,7 +52,14 @@ export class AddJobComponent {
       return;
     }
 
-    this.jobService.createJob(this.jobForm.value).subscribe({
+    const currentUser = this.authService.getCurrentUser();
+
+    const jobData = {
+      ...this.jobForm.value,
+      companyId: currentUser.id
+    };
+
+    this.jobService.createJob(jobData).subscribe({
       next: () => {
         Swal.fire({
           toast: true,
