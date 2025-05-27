@@ -1,19 +1,21 @@
 export interface Application {
     coverLetter: string;
     applicationDate: Date;
-  
+
     // Relations
     applicantId: string;
     jobId: string;
-  
-    applicant: {
+
+  status: 'PENDING' | 'ACCEPTED' | 'REJECTED' | 'INTERVIEW';
+
+  applicant: {
       id: string;
       firstName: string;
       lastName: string;
       email: string;
       phoneNumber: string;
     };
-  
+
     job: {
       id: string;
       title: string;
@@ -25,4 +27,3 @@ export interface Application {
       postedAt: Date;
     };
   }
-  

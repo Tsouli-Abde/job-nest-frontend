@@ -29,4 +29,9 @@ export class ApplicationService {
   getApplicationById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
+  updateStatus(appId: string, status: string): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${appId}/status`, null, {
+      params: { status }
+    });
+  }
 }

@@ -1,13 +1,29 @@
 <div class="container mt-5">
-    <h2 class="mb-4">My Applications</h2>
-    <div *ngIf="applications.length === 0">No applications submitted yet.</div>
+  <h2 class="mb-4">My Applications</h2>
 
-    <div *ngFor="let app of applications" class="card mb-3">
-        <div class="d-flex justify-content-between align-items-center">
-            <h5>{{ app.job.title }}</h5>
-            <a class="btn" [routerLink]="['/jobs', app.job.id]">View Job</a>
-        </div>
-        <p><strong>Submitted on :</strong> {{ app.applicationDate | date:'longDate' }}</p>
-        <p><strong>Cover letter :</strong> <br> {{ app.coverLetter }}</p>
+  <div *ngIf="applications.length === 0">
+    No applications submitted yet.
+  </div>
+
+  <div *ngFor="let app of applications" class="card mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>{{ app.job.title }}</h5>
+      <a class="btn btn-outline-primary btn-sm" [routerLink]="['/jobs', app.job.id]">View Job</a>
     </div>
+
+    <p><strong>Submitted on :</strong> {{ app.applicationDate | date:'longDate' }}</p>
+    <p><strong>Cover letter :</strong> <br> {{ app.coverLetter }}</p>
+
+    <div class="mt-2">
+      <span class="badge px-3 py-2"
+            [ngClass]="{
+              'bg-secondary': app.status === 'PENDING',
+              'bg-success': app.status === 'ACCEPTED',
+              'bg-info': app.status === 'INTERVIEW',
+              'bg-danger': app.status === 'REJECTED'
+            }">
+        Status : {{ app.status | titlecase }}
+      </span>
+    </div>
+  </div>
 </div>

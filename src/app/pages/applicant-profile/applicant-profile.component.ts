@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApplicationService } from '../../services/application.service';
 import { ApplicantService } from '../../services/applicant.service';
+import Swal from "sweetalert2";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-applicant-profile',
@@ -18,7 +20,8 @@ export class ApplicantProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private applicationService: ApplicationService,
-    private applicantService: ApplicantService
+    private applicantService: ApplicantService,
+    protected authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +51,29 @@ export class ApplicantProfileComponent implements OnInit {
       error: () => {
         this.loading = false;
         this.error = true;
+      }
+    });
+  }
+
+  changeStatus(newStatus: string): void {
+    Swal.fire({
+      title: `Confirm action`,
+      text: `Are you sure you want to mark this application as '${newStatus.toLowerCase()}'?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, confirm',
+      cancelButtonText: 'Cancel'
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.applicationService.updateStatus(this.application.id, newStatus).subscribe({
+          next: (res) => {
+            this.application.status = res.status;
+            Swal.fire('Updated!', `Status changed to ${res.status.toLowerCase()}.`, 'success');
+          },
+          error: () => {
+            Swal.fire('Error', 'Could not update status.', 'error');
+          }
+        });
       }
     });
   }

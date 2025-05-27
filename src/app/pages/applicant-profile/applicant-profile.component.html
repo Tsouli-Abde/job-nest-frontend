@@ -22,6 +22,13 @@
         {{ application.coverLetter }}
       </div>
     </div>
+
+    <div class="mt-4 text-end" *ngIf="authService.getRole() === 'company'">
+      <button class="btn btn-success me-2" (click)="changeStatus('ACCEPTED')">Validate</button>
+      <button class="btn btn-info me-2" (click)="changeStatus('INTERVIEW')">Schedule Interview</button>
+      <button class="btn btn-danger" (click)="changeStatus('REJECTED')">Refuse</button>
+    </div>
+
   </div>
 </div>
 
