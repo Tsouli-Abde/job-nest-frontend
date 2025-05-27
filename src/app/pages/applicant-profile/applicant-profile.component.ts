@@ -4,6 +4,7 @@ import { ApplicationService } from '../../services/application.service';
 import { ApplicantService } from '../../services/applicant.service';
 import Swal from "sweetalert2";
 import {AuthService} from "../../services/auth.service";
+import {JobExperienceService} from "../../services/job-experience.service";
 
 @Component({
   selector: 'app-applicant-profile',
@@ -16,12 +17,14 @@ export class ApplicantProfileComponent implements OnInit {
   applicant: any;
   loading = true;
   error = false;
+  jobExperiences: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private applicationService: ApplicationService,
     private applicantService: ApplicantService,
-    protected authService: AuthService
+    protected authService: AuthService,
+    private jobExperienceService: JobExperienceService
   ) {}
 
   ngOnInit(): void {
@@ -46,12 +49,20 @@ export class ApplicantProfileComponent implements OnInit {
     this.applicantService.getApplicantById(applicantId).subscribe({
       next: (user) => {
         this.applicant = user;
+        this.loadJobExperiences(applicantId);
         this.loading = false;
       },
       error: () => {
         this.loading = false;
         this.error = true;
       }
+    });
+  }
+
+  loadJobExperiences(applicantId: string): void {
+    this.jobExperienceService.getJobExperiencesByApplicant(applicantId).subscribe({
+      next: (data) => this.jobExperiences = data,
+      error: (err) => console.error('Failed to load experiences:', err)
     });
   }
 

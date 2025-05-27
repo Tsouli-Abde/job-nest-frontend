@@ -35,6 +35,38 @@
       <textarea id="skills" class="form-control" rows="3" formControlName="skills"></textarea>
     </div>
 
+    <div formArrayName="experiences" class="mb-4">
+      <label class="form-label fw-bold">Job Experience</label>
+
+      <div *ngFor="let exp of experiences.controls; let i = index" [formGroupName]="i" class="border rounded p-3 mb-3">
+        <div class="mb-2">
+          <label class="form-label">Company Name</label>
+          <input type="text" class="form-control" formControlName="companyName" placeholder="e.g. Google">
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Position</label>
+          <input type="text" class="form-control" formControlName="position" placeholder="e.g. Software Engineer">
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Start Date</label>
+          <input type="date" class="form-control" formControlName="startDate">
+        </div>
+        <div class="mb-2">
+          <label class="form-label">End Date</label>
+          <input type="date" class="form-control" formControlName="endDate">
+        </div>
+        <div class="mb-2">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" rows="2" formControlName="description" placeholder="Optional description..."></textarea>
+        </div>
+        <div class="text-end">
+          <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeExperience(i)" *ngIf="experiences.length > 1">Remove</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-outline-primary btn-sm" (click)="addExperience()">+ Add another experience</button>
+    </div>
+
     <div class="mb-3">
       <label for="username" class="form-label fw-bold">Username</label>
       <input id="username" type="text" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('username') }"

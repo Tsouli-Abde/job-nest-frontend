@@ -13,6 +13,19 @@
       <strong>Skills :</strong> {{ applicant.skills }}
     </div>
 
+    <div *ngIf="jobExperiences && jobExperiences.length > 0" class="job-experience-block mt-4">
+      <h5><i class="bi bi-briefcase me-2" style="color: #6d7549;"></i>Job Experiences</h5>
+
+      <div *ngFor="let exp of jobExperiences" class="experience-card border rounded p-3 mb-3 bg-light">
+        <h6 class="fw-bold mb-1">{{ exp.position }}</h6>
+        <p class="mb-1 text-muted">{{ exp.companyName }}</p>
+        <p class="mb-1"><strong>From :</strong> {{ exp.startDate | date:'MMM yyyy' }}
+          <strong>to</strong> {{ exp.endDate ? (exp.endDate | date:'MMM yyyy') : 'Present' }}
+        </p>
+        <p class="mb-0">{{ exp.description }}</p>
+      </div>
+    </div>
+
     <div class="cover-letter-block">
       <h5><i class="bi bi-journal-text me-2" style="color: #6d7549;"></i>Cover Letter</h5>
       <div class="cover-letter-content">{{ application.coverLetter }}</div>

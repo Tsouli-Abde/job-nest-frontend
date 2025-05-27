@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApplicantService } from '../../services/applicant.service';
 import { CompanyService } from '../../services/company.service';
 import Swal from 'sweetalert2';
+import {JobExperienceService} from "../../services/job-experience.service";
 
 @Component({
   selector: 'app-profile',
@@ -13,12 +14,14 @@ import Swal from 'sweetalert2';
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
   isApplicant = false;
+  jobExperiences: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     public authService: AuthService,
     private applicantService: ApplicantService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private jobExperienceService: JobExperienceService
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +40,7 @@ export class ProfileComponent implements OnInit {
         lastName: [user.lastName],
         skills: [user.skills || '']
       });
+      this.loadJobExperiences(user.id);
     } else {
       this.profileForm = this.fb.group({
         username: [user.username],
@@ -47,6 +51,14 @@ export class ProfileComponent implements OnInit {
         industry: [user.industry || '']
       });
     }
+  }
+
+  loadJobExperiences(applicantId: string): void {
+    this.jobExperienceService.getJobExperiencesByApplicant(applicantId)
+      .subscribe({
+        next: (data) => this.jobExperiences = data,
+        error: (err) => console.error('Failed to load experiences:', err)
+      });
   }
 
   onSubmit(): void {

@@ -56,7 +56,26 @@
             <textarea id="skills" rows="3" class="form-control" formControlName="skills"></textarea>
         </div>
 
-        <!-- Password (hidden) -->
+      <!-- Job Experiences -->
+      <div *ngIf="isApplicant && jobExperiences.length > 0" class="mt-5">
+        <h3 class="fw-bold text-dark mb-4">Job Experiences</h3>
+
+        <div *ngFor="let exp of jobExperiences" class="card mb-4 shadow-sm border">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title fw-bold text-primary mb-1">{{ exp.position }}</h5>
+              <small class="text-muted">
+                {{ exp.startDate | date: 'MMM yyyy' }} -
+                {{ exp.endDate ? (exp.endDate | date: 'MMM yyyy') : 'Present' }}
+              </small>
+            </div>
+            <h6 class="card-subtitle mb-2 text-secondary">{{ exp.companyName }}</h6>
+            <p class="card-text text-dark" *ngIf="exp.description">{{ exp.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Password (hidden) -->
         <input type="hidden" formControlName="password" />
 
         <br>

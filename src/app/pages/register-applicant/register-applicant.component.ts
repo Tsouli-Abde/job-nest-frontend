@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray,FormControl } from '@angular/forms';
 import { ApplicantService } from '../../services/applicant.service';
 import Swal from 'sweetalert2';
 
@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class RegisterApplicantComponent implements OnInit {
   registerForm!: FormGroup;
+  submitted = false;
 
   constructor(private fb: FormBuilder, private applicantService: ApplicantService) { }
 
@@ -22,10 +23,31 @@ export class RegisterApplicantComponent implements OnInit {
       skills: [''],
       username: ['', Validators.required],
       password: ['', Validators.required],
+      experiences: this.fb.array([this.createExperienceGroup()])
     });
   }
 
-  submitted = false;
+  get experiences(): FormArray {
+    return this.registerForm.get('experiences') as FormArray;
+  }
+
+  createExperienceGroup(): FormGroup {
+    return this.fb.group({
+      companyName: ['', Validators.required],
+      position: ['', Validators.required],
+      description: [''],
+      startDate: ['', Validators.required],
+      endDate: ['']
+    });
+  }
+
+  addExperience(): void {
+    this.experiences.push(this.createExperienceGroup());
+  }
+
+  removeExperience(index: number): void {
+    this.experiences.removeAt(index);
+  }
 
   isFieldInvalid(field: string): boolean {
     const control = this.registerForm.get(field);
@@ -47,17 +69,21 @@ export class RegisterApplicantComponent implements OnInit {
       return;
     }
 
-    this.applicantService.register(this.registerForm.value).subscribe({
+    const formData = this.registerForm.value;
+
+    this.applicantService.register(formData).subscribe({
       next: () => {
         Swal.fire({
           icon: 'success',
           title: 'Account created!',
           toast: true,
           position: 'top-end',
-          showConfirmButton: false,
           timer: 2500,
+          showConfirmButton: false,
         });
         this.registerForm.reset();
+        this.experiences.clear();
+        this.experiences.push(this.createExperienceGroup());
         this.submitted = false;
       },
       error: () => {
@@ -66,8 +92,8 @@ export class RegisterApplicantComponent implements OnInit {
           title: 'Error during registration',
           toast: true,
           position: 'top-end',
-          showConfirmButton: false,
           timer: 3000,
+          showConfirmButton: false,
         });
       }
     });
