@@ -21,10 +21,7 @@
         </div>
 
         <div class="d-flex gap-2">
-          <button class="btn btn-outline-secondary btn-sm" title="Edit Job">
-            <i class="bi bi-pencil-fill"></i>
-          </button>
-          <button class="btn btn-outline-danger btn-sm" title="Delete Job">
+          <button class="btn btn-outline-danger btn-sm" title="Delete Job" (click)="deleteJob(job.id)">
             <i class="bi bi-trash3-fill"></i>
           </button>
         </div>

@@ -52,4 +52,7 @@ export class JobService {
   getAllJobsSorted(): Observable<Job[]> {
     return this.http.get<Job[]>(`${this.apiUrl}`);
   }
+  deleteJob(jobId: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${jobId}`);
+  }
 }
