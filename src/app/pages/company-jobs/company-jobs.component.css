@@ -1,5 +1,30 @@
-.card {
-  border-radius: 1rem;
+.container {
+  max-width: 950px;
+}
+
+.main-title {
+  font-weight: 700;
+  color: #273e4e;
+}
+
+.job-card {
+  background-color: #fbf7ef;
+  border-radius: 1.25rem;
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.badge {
+  font-size: 0.85rem;
+}
+
+.badge.bg-dark {
+  background-color: #273e4e !important;
+}
+
+.empty-message {
+  background-color: #fbf7ef;
+  color: #666;
 }
 
 .list-group-item {
@@ -7,14 +32,22 @@
   border-top: 1px solid #e0e0e0;
 }
 
-.badge.bg-dark {
-  background-color: #273e4e !important;
+.btn-outline-primary {
+  border-color: #273e4e;
+  color: #273e4e;
+  font-weight: bold;
+}
+
+.btn-outline-primary:hover {
+  background-color: #273e4e;
+  color: #fff;
 }
 
 .btn-primary {
   background-color: #273e4e;
   border: none;
 }
+
 .btn-primary:hover {
   background-color: #3d6480;
 }
