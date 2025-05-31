@@ -17,6 +17,13 @@
                 </span>
             </div>
 
+            <div class="section">
+                <h5>Company</h5>
+                <a [routerLink]="['/companies', job.companyId]" class="company-link">
+                    <span class="arrow">➔</span>
+                    {{ job.companyName }}
+                </a>
+            </div>
 
             <div class="section">
                 <h5>Description</h5>

@@ -20,6 +20,7 @@ import { ApplyFormComponent } from './pages/apply-form/apply-form.component';
 import { ApplicantApplicationsComponent } from './pages/applicant-applications/applicant-applications.component';
 import { CompanyJobsComponent } from './pages/company-jobs/company-jobs.component';
 import { ApplicantProfileComponent } from './pages/applicant-profile/applicant-profile.component';
+import { CompanyDetailComponent } from './pages/company-detail/company-detail.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ApplicantProfileComponent } from './pages/applicant-profile/applicant-p
     ApplyFormComponent,
     ApplicantApplicationsComponent,
     CompanyJobsComponent,
-    ApplicantProfileComponent
+    ApplicantProfileComponent,
+    CompanyDetailComponent
   ],
   imports: [
     BrowserModule,

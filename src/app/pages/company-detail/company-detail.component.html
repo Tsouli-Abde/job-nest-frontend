@@ -1,0 +1,27 @@
+<div class="company-detail-wrapper" *ngIf="company">
+    <h1>{{ company.companyName }}</h1>
+    <p><strong>Industry:</strong> {{ company.industry || 'Not specified' }}</p>
+    <p><strong>Phone:</strong> {{ company.phoneNumber || 'Not provided' }}</p>
+    <p><strong>Email:</strong> {{ company.email }}</p>
+
+    <div *ngIf="jobs.length > 0" class="mt-5">
+        <h3 class="mb-4 fw-bold text-dark">Job Offers from {{ company.companyName }}</h3>
+
+        <div class="job-grid">
+            <div *ngFor="let job of jobs" class="job-card" [routerLink]="['/jobs', job.id]">
+                <h4>{{ job.title }}</h4>
+                <p class="location">📍 {{ job.location }}</p>
+
+                <div class="job-badges">
+                    <span class="badge-info"><i class="bi bi-cash"></i> {{ job.salaryMin }}€ - {{ job.salaryMax
+                        }}€</span>
+                    <span class="badge-info"><i class="bi bi-briefcase-fill"></i> {{ job.type }}</span>
+                    <span class="badge-info"><i class="bi bi-bar-chart"></i> {{ job.experienceLevel }}</span>
+                </div>
+
+                <small class="posted-date"><i class="bi bi-calendar-event me-1"></i> {{ job.postedAt | date:'longDate'
+                    }}</small>
+            </div>
+        </div>
+    </div>
+</div>

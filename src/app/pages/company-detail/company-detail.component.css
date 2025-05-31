@@ -1,0 +1,83 @@
+.company-detail-wrapper {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 2rem 2.5rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e6e6e6;
+}
+
+.company-detail-wrapper h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #273e4e;
+}
+
+.company-detail-wrapper p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.75rem;
+}
+
+.company-detail-wrapper p strong {
+    color: #273e4e;
+    margin-right: 0.5rem;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #273e4e;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.back-link:hover {
+    background-color: #3d6480;
+}
+
+.job-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+
+.job-card {
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background-color: #fffdf8;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.job-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.job-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0.5rem 0 1rem;
+}
+
+.badge-info {
+    background-color: #f0f0f0;
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #273e4e;
+}
+
+.posted-date {
+    font-size: 0.8rem;
+    color: #888;
+}

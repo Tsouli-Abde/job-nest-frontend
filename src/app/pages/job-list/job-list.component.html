@@ -51,6 +51,7 @@
       <div class="job-grid">
         <div *ngFor="let job of jobs" class="job-card" [routerLink]="['/jobs', job.id]">
           <h2>{{ job.title }}</h2>
+          <p class="location">🏢 {{ job.companyName || 'Unknown Company' }}</p>
           <p class="location">📍 {{ job.location }}</p>
           <div class="job-badges">
             <span class="badge-info">

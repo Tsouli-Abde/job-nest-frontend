@@ -14,6 +14,7 @@ import { ApplyFormComponent } from './pages/apply-form/apply-form.component';
 import { ApplicantApplicationsComponent } from './pages/applicant-applications/applicant-applications.component';
 import {CompanyJobsComponent} from "./pages/company-jobs/company-jobs.component";
 import {ApplicantProfileComponent} from "./pages/applicant-profile/applicant-profile.component";
+import { CompanyDetailComponent } from './pages/company-detail/company-detail.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,9 @@ const routes: Routes = [
   { path: 'jobs/:id/apply', component: ApplyFormComponent },
   { path: 'applications', component: ApplicantApplicationsComponent },
   { path: 'company-jobs', component: CompanyJobsComponent },
-  { path: 'applicant-profile/:applicationId', component: ApplicantProfileComponent }
+  { path: 'applicant-profile/:applicationId', component: ApplicantProfileComponent },
+  { path: 'companies/:id', component: CompanyDetailComponent }
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -4,10 +4,6 @@
 
 - Lors de la création d’un compte, connecter automatiquement l’utilisateur (au lieu de devoir cliquer sur login)
 - Ajouter la possibilité de **créer/éditer des job experiences** dans le profil de l’applicant
-- Afficher l’entreprise liée à un job dans :
-  - la **liste des jobs** (`job-list`)
-  - le **détail du job** (`job-detail`)
-- Pouvoir cliquer sur le nom de l’entreprise liée à un job et être redirigé vers une **page d’informations sur l’entreprise** (name, industry, contact number)
 - Quand un utilisateur non connecté (en tant qu'applicant) clique sur "Apply", le rediriger vers **l’offre précédente après login**, au lieu de revenir sur la home
 
 ## 🔁 Navigation & UX
