@@ -53,8 +53,21 @@ export class ApplyFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.applyForm.invalid) return;
-
+    if (this.applyForm.invalid) {
+      this.applyForm.markAllAsTouched();
+  
+      Swal.fire({
+        icon: 'warning',
+        title: 'Cover letter is required.',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+  
+      return;
+    }
+  
     const applicant = this.authService.getCurrentUser();
     const application = {
       jobId: this.jobId,
@@ -72,5 +85,5 @@ export class ApplyFormComponent implements OnInit {
         Swal.fire('Error', 'Failed to submit application', 'error');
       }
     });
-  }
+  }  
 }

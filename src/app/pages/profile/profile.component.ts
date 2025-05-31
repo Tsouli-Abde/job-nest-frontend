@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApplicantService } from '../../services/applicant.service';
 import { CompanyService } from '../../services/company.service';
 import Swal from 'sweetalert2';
-import {JobExperienceService} from "../../services/job-experience.service";
+import { JobExperienceService } from "../../services/job-experience.service";
 
 @Component({
   selector: 'app-profile',
@@ -32,23 +32,23 @@ export class ProfileComponent implements OnInit {
 
     if (this.isApplicant) {
       this.profileForm = this.fb.group({
-        username: [user.username],
-        email: [user.email],
-        phoneNumber: [user.phoneNumber || ''],
+        username: [{ value: user.username, disabled: true }],
+        email: [user.email, [Validators.required, Validators.email]],
+        phoneNumber: [user.phoneNumber || '', Validators.required],
         password: [user.password],
-        firstName: [user.firstName],
-        lastName: [user.lastName],
-        skills: [user.skills || '']
+        firstName: [user.firstName, Validators.required],
+        lastName: [user.lastName, Validators.required],
+        skills: [user.skills || '', Validators.required]
       });
       this.loadJobExperiences(user.id);
     } else {
       this.profileForm = this.fb.group({
-        username: [user.username],
-        email: [user.email],
-        phoneNumber: [user.phoneNumber || ''],
+        username: [{ value: user.username, disabled: true }],
+        email: [user.email, [Validators.required, Validators.email]],
+        phoneNumber: [user.phoneNumber || '', Validators.required],
         password: [user.password],
-        companyName: [user.companyName],
-        industry: [user.industry || '']
+        companyName: [user.companyName, Validators.required],
+        industry: [user.industry || '', Validators.required]
       });
     }
   }
@@ -62,7 +62,18 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.profileForm.invalid) return;
+    if (this.profileForm.invalid) {
+      this.profileForm.markAllAsTouched(); // force l'affichage des erreurs
+      Swal.fire({
+        icon: 'warning',
+        title: 'Please complete all required fields.',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      return;
+    }
 
     const currentUser = this.authService.getCurrentUser();
     const formValues = this.profileForm.value;

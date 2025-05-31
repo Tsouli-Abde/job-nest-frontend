@@ -91,3 +91,8 @@ form button {
 form button:hover {
     background-color: #273e4eac;
 }
+
+textarea.ng-invalid.ng-touched {
+    border: 1px solid #dc3545;
+    box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.25);
+}

@@ -13,8 +13,9 @@
 
     <form [formGroup]="applyForm" (ngSubmit)="onSubmit()">
         <label for="coverLetter">Cover Letter</label>
-        <textarea id="coverLetter" formControlName="coverLetter"></textarea>
-
+        <textarea id="coverLetter" formControlName="coverLetter"
+            [ngClass]="{ 'is-invalid': applyForm.get('coverLetter')?.invalid && applyForm.get('coverLetter')?.touched }">
+        </textarea>
         <button type="submit">
             Submit Application
         </button>

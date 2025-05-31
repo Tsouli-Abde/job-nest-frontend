@@ -13,10 +13,6 @@
 ## 🔁 Navigation & UX
 
 - Ajouter des **flèches de retour** sur les pages clés
-- Intégrer **SweetAlert2** pour feedback utilisateur dans les formulaires suivants :
-  - Company Profile (mettre en rouge les champs invalides à l’édition)
-  - Applicant Profile (mettre en rouge les champs invalides à l’édition)
-  - Apply Form (afficher une alarme rouge si la lettre de motivation est vide au moment du submit)
 
 ## 🛠 Backend & Documentation
 

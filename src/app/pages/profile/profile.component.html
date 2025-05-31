@@ -16,44 +16,58 @@
 
         <!-- Email -->
         <div class="mb-3">
-            <label for="email" class="form-label fw-semibold text-dark">Email</label>
-            <input type="email" id="email" class="form-control" formControlName="email">
+          <label for="email" class="form-label fw-semibold text-dark">Email</label>
+          <input type="email" id="email" class="form-control"
+                [ngClass]="{ 'is-invalid': profileForm.get('email')?.invalid && profileForm.get('email')?.touched }"
+                formControlName="email">
         </div>
 
         <!-- First Name (applicant only) -->
         <div class="mb-3" *ngIf="isApplicant">
-            <label for="firstName" class="form-label fw-semibold text-dark">First Name</label>
-            <input type="text" id="firstName" class="form-control" formControlName="firstName">
+          <label for="firstName" class="form-label fw-semibold text-dark">First Name</label>
+          <input type="text" id="firstName" class="form-control"
+                [ngClass]="{ 'is-invalid': profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched }"
+                formControlName="firstName">
         </div>
 
         <!-- Last Name (applicant only) -->
         <div class="mb-3" *ngIf="isApplicant">
-            <label for="lastName" class="form-label fw-semibold text-dark">Last Name</label>
-            <input type="text" id="lastName" class="form-control" formControlName="lastName">
+          <label for="lastName" class="form-label fw-semibold text-dark">Last Name</label>
+          <input type="text" id="lastName" class="form-control"
+                [ngClass]="{ 'is-invalid': profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched }"
+                formControlName="lastName">
         </div>
 
         <!-- Company Name (company only) -->
         <div class="mb-3" *ngIf="!isApplicant">
-            <label for="companyName" class="form-label fw-semibold text-dark">Company Name</label>
-            <input type="text" id="companyName" class="form-control" formControlName="companyName">
+          <label for="companyName" class="form-label fw-semibold text-dark">Company Name</label>
+          <input type="text" id="companyName" class="form-control"
+                [ngClass]="{ 'is-invalid': profileForm.get('companyName')?.invalid && profileForm.get('companyName')?.touched }"
+                formControlName="companyName">
         </div>
 
         <!-- Industry (company only) -->
         <div class="mb-3" *ngIf="!isApplicant">
-            <label for="industry" class="form-label fw-semibold text-dark">Industry</label>
-            <input type="text" id="industry" class="form-control" formControlName="industry">
+          <label for="industry" class="form-label fw-semibold text-dark">Industry</label>
+          <input type="text" id="industry" class="form-control"
+                [ngClass]="{ 'is-invalid': profileForm.get('industry')?.invalid && profileForm.get('industry')?.touched }"
+                formControlName="industry">
         </div>
 
         <!-- Phone Number -->
         <div class="mb-3">
-            <label for="phoneNumber" class="form-label fw-semibold text-dark">Phone Number</label>
-            <input type="text" id="phoneNumber" class="form-control" formControlName="phoneNumber">
+          <label for="phoneNumber" class="form-label fw-semibold text-dark">Phone Number</label>
+          <input type="text" id="phoneNumber" class="form-control"
+                [ngClass]="{ 'is-invalid': profileForm.get('phoneNumber')?.invalid && profileForm.get('phoneNumber')?.touched }"
+                formControlName="phoneNumber">
         </div>
 
         <!-- Skills (applicant only) -->
         <div class="mb-3" *ngIf="isApplicant">
-            <label for="skills" class="form-label fw-semibold text-dark">Skills</label>
-            <textarea id="skills" rows="3" class="form-control" formControlName="skills"></textarea>
+          <label for="skills" class="form-label fw-semibold text-dark">Skills</label>
+          <textarea id="skills" rows="3" class="form-control"
+                    [ngClass]="{ 'is-invalid': profileForm.get('skills')?.invalid && profileForm.get('skills')?.touched }"
+                    formControlName="skills"></textarea>
         </div>
 
       <!-- Job Experiences -->

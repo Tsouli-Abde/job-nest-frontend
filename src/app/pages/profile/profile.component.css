@@ -32,3 +32,9 @@ textarea.form-control {
     background-color: #3d6480;
     cursor: pointer;
 }
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid #dc3545;
+    box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.25);
+}
