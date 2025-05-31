@@ -3,7 +3,6 @@
 ## ✅ Fonctionnalités à améliorer
 
 - Lors de la création d’un compte, connecter automatiquement l’utilisateur (au lieu de devoir cliquer sur login)
-- Afficher le footer sur toutes les pages (et pas seulement sur la home)
 - Ajouter la possibilité de **créer/éditer des job experiences** dans le profil de l’applicant
 - Afficher l’entreprise liée à un job dans :
   - la **liste des jobs** (`job-list`)

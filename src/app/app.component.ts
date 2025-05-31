@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'job-nest-frontend';
   constructor(public router: Router) {}
   showFooter(): boolean {
-    return this.router.url === '/' || this.router.url === '/home';
+    const excludedRoutes = ['/applications', '/login', '/login-company', '/register-choice', '/company-jobs'];
+    return !excludedRoutes.includes(this.router.url);
   }
 }
