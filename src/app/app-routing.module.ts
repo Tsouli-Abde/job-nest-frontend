@@ -15,26 +15,28 @@ import { ApplicantApplicationsComponent } from './pages/applicant-applications/a
 import {CompanyJobsComponent} from "./pages/company-jobs/company-jobs.component";
 import {ApplicantProfileComponent} from "./pages/applicant-profile/applicant-profile.component";
 import { CompanyDetailComponent } from './pages/company-detail/company-detail.component';
-
+import { AuthGuard } from './guards/auth.guard';
+import { ApplicantGuard } from './guards/applicant.guard';
+import { CompanyGuard } from './guards/company.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'jobs', component: JobListComponent },
-  { path: 'post-job', component: AddJobComponent },
   { path: 'jobs/:id', component: JobDetailComponent },
   { path: 'register-applicant', component: RegisterApplicantComponent },
   { path: 'register-choice', component: RegisterChoiceComponent },
   { path: 'register-company', component: RegisterCompanyComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'footer', component: FooterComponent },
   { path: 'login', component: LoginComponent, data: { userType: 'applicant' } },
   { path: 'login-company', component: LoginComponent, data: { userType: 'company' } },
-  { path: 'jobs/:id/apply', component: ApplyFormComponent },
-  { path: 'applications', component: ApplicantApplicationsComponent },
-  { path: 'company-jobs', component: CompanyJobsComponent },
-  { path: 'applicant-profile/:applicationId', component: ApplicantProfileComponent },
-  { path: 'companies/:id', component: CompanyDetailComponent }
-
+  { path: 'companies/:id', component: CompanyDetailComponent },
+  { path: 'footer', component: FooterComponent },
+//guarded
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'post-job', component: AddJobComponent, canActivate: [CompanyGuard] },
+  { path: 'jobs/:id/apply', component: ApplyFormComponent, canActivate: [ApplicantGuard] },
+  { path: 'applications', component: ApplicantApplicationsComponent, canActivate: [ApplicantGuard] },
+  { path: 'company-jobs', component: CompanyJobsComponent, canActivate: [CompanyGuard] },
+  { path: 'applicant-profile/:applicationId', component: ApplicantProfileComponent, canActivate: [CompanyGuard] },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

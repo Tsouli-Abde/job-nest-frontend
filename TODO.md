@@ -6,7 +6,7 @@
 - faire en sorte d’être redirigé vers l’offre où on était
 - inclure aussi le cas où l’utilisateur **crée un compte** depuis cette page : après inscription, il doit également être redirigé vers la fiche de l’offre qu’il consultait.
 
-- [ ] Faire les flèches retours un peu partout
+- [x] Faire les flèches retours un peu partout
 - [ ] Améliorer le Swagger
 - [ ] Améliorer les données en BDD pour plus de cohérence :
   - [ ] 20 jobs
@@ -23,4 +23,4 @@
   - [x] Company profile (se met pas en rouge lorsqu’on edit des trucs faux/vides)
 
 - [X] Mettre le footer partout et pas juste à home
-- [ ] Protéger les pages sensibles avec des fichiers `.guard.ts` (ex: `/my-postings`, `/profile`, etc.)
+- [x] Protéger les pages sensibles avec des fichiers `.guard.ts` (ex: `/my-postings`, `/profile`, etc.)
