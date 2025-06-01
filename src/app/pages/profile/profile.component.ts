@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ApplicantService } from '../../services/applicant.service';
 import { CompanyService } from '../../services/company.service';
 import Swal from 'sweetalert2';
 import { JobExperienceService } from "../../services/job-experience.service";
+import {lastValueFrom, Observable} from "rxjs";
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,6 @@ import { JobExperienceService } from "../../services/job-experience.service";
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
   isApplicant = false;
-  jobExperiences: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
 
     if (this.isApplicant) {
       this.profileForm = this.fb.group({
+        experiences: this.fb.array([]),
         username: [{ value: user.username, disabled: true }],
         email: [user.email, [Validators.required, Validators.email]],
         phoneNumber: [user.phoneNumber || '', Validators.required],
@@ -53,17 +54,88 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  get experiences(): FormArray {
+    return this.profileForm.get('experiences') as FormArray;
+  }
+
+  addExperience(): void {
+    const experienceGroup = this.fb.group({
+      id: [null],
+      companyName: [''],
+      position: [''],
+      startDate: [''],
+      endDate: [''],
+      description: ['']
+    });
+    this.experiences.push(experienceGroup);
+  }
+
+  removeExperience(index: number): void {
+    const experience = this.experiences.at(index).value;
+
+    if (experience.id) {
+      this.jobExperienceService.deleteJobExperience(experience.id).subscribe({
+        next: () => {
+          this.experiences.removeAt(index);
+          Swal.fire('Deleted', 'Experience removed.', 'success');
+        },
+        error: () => {
+          Swal.fire('Error', 'Failed to delete experience.', 'error');
+        }
+      });
+    } else {
+      this.experiences.removeAt(index);
+    }
+  }
+
+  deleteExperience(index: number): void {
+    const experience = this.experiences.at(index).value;
+
+    if (!experience.id) return;
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This experience will be permanently deleted.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.jobExperienceService.deleteJobExperience(experience.id).subscribe({
+          next: () => {
+            this.experiences.removeAt(index);
+            Swal.fire('Deleted!', 'The experience has been removed.', 'success');
+          },
+          error: () => {
+            Swal.fire('Error', 'Failed to delete the experience.', 'error');
+          }
+        });
+      }
+    });
+  }
+
   loadJobExperiences(applicantId: string): void {
     this.jobExperienceService.getJobExperiencesByApplicant(applicantId)
       .subscribe({
-        next: (data) => this.jobExperiences = data,
+        next: (data) => {
+          const formGroups = data.map(exp => this.fb.group({
+            id: [exp.id],
+            companyName: [exp.companyName],
+            position: [exp.position],
+            description: [exp.description],
+            startDate: [exp.startDate],
+            endDate: [exp.endDate]
+          }));
+          this.profileForm.setControl('experiences', this.fb.array(formGroups));
+        },
         error: (err) => console.error('Failed to load experiences:', err)
       });
   }
 
   onSubmit(): void {
     if (this.profileForm.invalid) {
-      this.profileForm.markAllAsTouched(); // force l'affichage des erreurs
+      this.profileForm.markAllAsTouched();
       Swal.fire({
         icon: 'warning',
         title: 'Please complete all required fields.',
@@ -82,7 +154,7 @@ export class ProfileComponent implements OnInit {
     if (role === 'applicant') {
       const updatedData = {
         id: currentUser.id,
-        username: formValues.username,
+        username: currentUser.username, // username is disabled in the form
         password: formValues.password,
         email: formValues.email,
         phoneNumber: formValues.phoneNumber,
@@ -94,7 +166,21 @@ export class ProfileComponent implements OnInit {
       this.applicantService.updateApplicant(currentUser.id, updatedData).subscribe({
         next: (res) => {
           this.authService.setCurrentUser(res);
-          Swal.fire('Saved !', 'Your profile has been updated.', 'success');
+
+          const saveExperiences = formValues.experiences.map((exp: any) => {
+            exp.applicantId = currentUser.id;
+            if (exp.id) {
+              return this.jobExperienceService.updateJobExperience(exp.id, exp);
+            } else {
+              return this.jobExperienceService.createJobExperience(exp);
+            }
+          });
+
+          Promise.all(saveExperiences.map((obs: Observable<any>) => lastValueFrom(obs))).then(() => {
+            Swal.fire('Saved!', 'Your profile and experiences have been updated.', 'success');
+          }).catch(() => {
+            Swal.fire('Error', 'Some experiences could not be saved.', 'error');
+          });
         },
         error: () => {
           Swal.fire('Error', 'Failed to update profile.', 'error');
@@ -104,7 +190,7 @@ export class ProfileComponent implements OnInit {
     } else if (role === 'company') {
       const updatedData = {
         id: currentUser.id,
-        username: formValues.username,
+        username: currentUser.username,
         password: formValues.password,
         email: formValues.email,
         phoneNumber: formValues.phoneNumber,
@@ -115,7 +201,7 @@ export class ProfileComponent implements OnInit {
       this.companyService.updateCompany(currentUser.id, updatedData).subscribe({
         next: (res) => {
           this.authService.setCurrentUser(res);
-          Swal.fire('Saved !', 'Your company profile has been updated.', 'success');
+          Swal.fire('Saved!', 'Your company profile has been updated.', 'success');
         },
         error: () => {
           Swal.fire('Error', 'Failed to update company profile.', 'error');

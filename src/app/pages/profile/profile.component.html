@@ -71,21 +71,65 @@
         </div>
 
       <!-- Job Experiences -->
-      <div *ngIf="isApplicant && jobExperiences.length > 0" class="mt-5">
+      <div *ngIf="isApplicant" formArrayName="experiences" class="mt-5">
         <h3 class="fw-bold text-dark mb-4">Job Experiences</h3>
 
-        <div *ngFor="let exp of jobExperiences" class="card mb-4 shadow-sm border">
+        <div *ngFor="let exp of experiences.controls; let i = index" [formGroupName]="i" class="card mb-4 shadow-sm border">
           <div class="card-body">
-            <div class="d-flex justify-content-between">
-              <h5 class="card-title fw-bold text-primary mb-1">{{ exp.position }}</h5>
-              <small class="text-muted">
-                {{ exp.startDate | date: 'MMM yyyy' }} -
-                {{ exp.endDate ? (exp.endDate | date: 'MMM yyyy') : 'Present' }}
-              </small>
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title mb-3">Experience {{ i + 1 }}</h5>
+              <button
+                type="button"
+                class="btn btn-link text-danger p-0"
+                title="Delete experience"
+                *ngIf="exp.get('id')?.value"
+                (click)="deleteExperience(i)">
+                <i class="bi bi-trash-fill fs-5"></i>
+              </button>
             </div>
-            <h6 class="card-subtitle mb-2 text-secondary">{{ exp.companyName }}</h6>
-            <p class="card-text text-dark" *ngIf="exp.description">{{ exp.description }}</p>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">Company</label>
+                <input formControlName="companyName" class="form-control" type="text">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">Position</label>
+                <input formControlName="position" class="form-control" type="text">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">Start Date</label>
+                <input formControlName="startDate" class="form-control" type="date">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold">End Date</label>
+                <input formControlName="endDate" class="form-control" type="date">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Description</label>
+              <textarea formControlName="description" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="text-end">
+              <!-- Bouton remove pour supprimer un formulaire (sans id) -->
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                (click)="removeExperience(i)"
+                *ngIf="!exp.get('id')?.value && experiences.length > 1">
+                Remove
+              </button>
+            </div>
           </div>
+        </div>
+
+        <div class="text-end mb-4">
+          <button type="button" class="btn btn-outline-secondary btn-sm" (click)="addExperience()">+ Add Experience</button>
         </div>
       </div>
 

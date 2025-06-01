@@ -11,10 +11,19 @@ export class JobExperienceService {
 
   constructor(private http: HttpClient) {}
 
-  addExperience(applicantId: string, experience: JobExperience): Observable<any> {
-    return this.http.post(`${this.apiUrl}/applicant/${applicantId}`, experience);
+  getJobExperiencesByApplicant(applicantId: string): Observable<JobExperience[]> {
+    return this.http.get<JobExperience[]>(`${this.apiUrl}/applicant/${applicantId}`);
   }
-  getJobExperiencesByApplicant(applicantId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/applicant/${applicantId}`);
+
+  createJobExperience(experience: JobExperience): Observable<JobExperience> {
+    return this.http.post<JobExperience>(`${this.apiUrl}/applicant/${experience.applicantId}`, experience);
+  }
+
+  updateJobExperience(id: string, experience: JobExperience): Observable<JobExperience> {
+    return this.http.put<JobExperience>(`${this.apiUrl}/${id}`, experience);
+  }
+
+  deleteJobExperience(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
