@@ -1,5 +1,5 @@
 <div class="job-detail-wrapper" *ngIf="job">
-    <div class="job-detail-card">
+  <div class="job-detail-card">
 
         <div class="job-info">
             <h1 class="job-title">{{ job.title }}</h1>
@@ -41,6 +41,7 @@
             </div>
 
             <p class="posted-date">Posted on : {{ job.postedAt | date:'longDate' }}</p>
+          <app-back-button></app-back-button>
         </div>
 
         <div class="job-map-column">
@@ -48,7 +49,7 @@
           <button class="btn-apply" [disabled]="hasApplied" (click)="onApply()">
             {{ hasApplied ? 'Already Applied' : 'Apply now' }}
           </button>
-          
+
         </div>
 
     </div>

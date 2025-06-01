@@ -21,6 +21,7 @@ import { ApplicantApplicationsComponent } from './pages/applicant-applications/a
 import { CompanyJobsComponent } from './pages/company-jobs/company-jobs.component';
 import { ApplicantProfileComponent } from './pages/applicant-profile/applicant-profile.component';
 import { CompanyDetailComponent } from './pages/company-detail/company-detail.component';
+import { BackButtonComponent } from './components/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CompanyDetailComponent } from './pages/company-detail/company-detail.co
     ApplicantApplicationsComponent,
     CompanyJobsComponent,
     ApplicantProfileComponent,
-    CompanyDetailComponent
+    CompanyDetailComponent,
+    BackButtonComponent
   ],
   imports: [
     BrowserModule,

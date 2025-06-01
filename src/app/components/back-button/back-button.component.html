@@ -1,0 +1,16 @@
+<div class="back-button-wrapper d-flex justify-content-start mb-3 ms-1">
+  <button
+    class="btn back-button px-3 py-2 d-flex justify-content-center align-items-center animate-back {{ customClass }}"
+    [ngClass]="color"
+    (click)="goBack()"
+    [ngStyle]="{
+      color: '#6d7549',
+      backgroundColor: '#fbf7ef',
+      border: '1px solid #6d7549',
+      width: '3.2rem',
+      height: '3rem'
+    }"
+  >
+    <i class="bi bi-arrow-left fs-4 fw-bold"></i>
+  </button>
+</div>

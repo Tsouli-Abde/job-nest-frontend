@@ -1,11 +1,10 @@
 <div class="profile-container" *ngIf="profileForm">
-    <h2 class="mb-4 d-flex align-items-center">
+  <h2 class="mb-9 d-flex align-items-center">
         <i class="bi bi-person-circle me-2 fs-3 text-dark"></i>
         <br>
         <br>
         <span class="fw-bold text-dark">Profile</span>
     </h2>
-
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="p-4 rounded shadow-sm bg-white border">
 
         <!-- Username (readonly) -->
