@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray,FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ApplicantService } from '../../services/applicant.service';
 import Swal from 'sweetalert2';
 import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-applicant',
@@ -13,13 +13,19 @@ import {Router} from "@angular/router";
 export class RegisterApplicantComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
+  redirectTo: string = '/';
 
   constructor(private fb: FormBuilder,
               private applicantService: ApplicantService,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.redirectTo = params['redirectTo'] || '/';
+    });
+
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -95,7 +101,7 @@ export class RegisterApplicantComponent implements OnInit {
               timer: 1500
             });
 
-            this.router.navigate(['/']);
+            this.router.navigateByUrl(this.redirectTo);
           },
           error: () => {
             Swal.fire({

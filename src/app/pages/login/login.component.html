@@ -23,7 +23,9 @@
 
     <div class="text-center mt-4 create-account-box">
       <span class="text-muted">Don’t have an account ?</span>
-      <a routerLink="/register-choice" class="btn btn-outline-dark btn-sm ms-2 create-btn">
+      <a [routerLink]="['/register-choice']"
+         [queryParams]="{ redirectTo: redirectTo }"
+         class="btn btn-outline-dark btn-sm ms-2 create-btn">
         Create one
       </a>
     </div>

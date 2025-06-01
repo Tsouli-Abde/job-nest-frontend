@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-register-choice',
@@ -7,13 +7,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./register-choice.component.css']
 })
 export class RegisterChoiceComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  /*goToRecruiter() {
+    this.router.navigate(['/register-company'])
+  }*/
 
   goToApplicant() {
-    this.router.navigate(['/register-applicant']);
+    const redirectTo = this.route.snapshot.queryParamMap.get('redirectTo') || '/';
+    this.router.navigate(['/register-applicant'], { queryParams: { redirectTo } });
   }
 
   goToRecruiter() {
-    this.router.navigate(['/register-company'])
+    const redirectTo = this.route.snapshot.queryParamMap.get('redirectTo') || '/';
+    this.router.navigate(['/register-company'], { queryParams: { redirectTo } });
   }
 }

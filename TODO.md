@@ -2,7 +2,9 @@
 
 - [X] Lorsqu’on crée un compte, être connecté directement après (là on crée mais on doit cliquer sur login pour se connecter)
 - [ ] Pouvoir créer/éditer des jobs experiences dans applicant profile
-- [ ] Lorsqu’on est pas connecté en tant que applicant et qu’on clique sur Apply, on est redirigé vers le login de applicant, mais lorsqu’on se log on est redirigé vers home → faire en sorte d’être redirigé vers l’offre où on était
+- [x] Lorsqu’on est pas connecté en tant que applicant et qu’on clique sur Apply, on est redirigé vers le login de applicant, mais lorsqu’on se log on est redirigé vers home alors : 
+- faire en sorte d’être redirigé vers l’offre où on était
+- inclure aussi le cas où l’utilisateur **crée un compte** depuis cette page : après inscription, il doit également être redirigé vers la fiche de l’offre qu’il consultait.
 
 - [ ] Faire les flèches retours un peu partout
 - [ ] Améliorer le Swagger

@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isSubmitted = false;
   userType: 'applicant' | 'company' = 'applicant';
+  redirectTo: string = '/';
 
   constructor(
     private fb: FormBuilder,
@@ -22,7 +23,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userType = this.route.snapshot.data['userType'] || 'applicant';
+    this.route.queryParams.subscribe(params => {
+      this.userType = params['userType'] || this.route.snapshot.data['userType'] || 'applicant';
+      this.redirectTo = params['redirectTo'] || '/';
+    });
 
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
