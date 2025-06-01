@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import {CompanyService} from "../../services/company.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-register-company',
@@ -13,8 +14,10 @@ export class RegisterCompanyComponent implements OnInit {
   registerForm!: FormGroup;
   isSubmitted = false;
 
-  constructor(private fb: FormBuilder, private router: Router,
-              private companyService: CompanyService) {}
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private companyService: CompanyService,
+              private authService: AuthService) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -48,15 +51,35 @@ export class RegisterCompanyComponent implements OnInit {
       return;
     }
 
+    const credentials = {
+      username: this.registerForm.value.username,
+      password: this.registerForm.value.password
+    };
+
     this.companyService.register(this.registerForm.value).subscribe({
       next: () => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Account created!',
-          text: 'Welcome to JobNest.',
-          confirmButtonColor: '#6d7549',
-        }).then(() => {
-          this.router.navigate(['/login']);
+        this.companyService.login(credentials).subscribe({
+          next: (response) => {
+            this.authService.saveUserToLocalStorage({ ...response, role: 'company' });
+            Swal.fire({
+              icon: 'success',
+              title: 'Welcome!',
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500
+            });
+
+            this.router.navigate(['/']);
+          },
+          error: () => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Login failed',
+              text: 'Please try again manually.',
+              confirmButtonColor: '#dc3545'
+            });
+          }
         });
       },
       error: () => {
@@ -69,5 +92,4 @@ export class RegisterCompanyComponent implements OnInit {
       }
     });
   }
-
 }

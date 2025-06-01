@@ -1,24 +1,24 @@
 # 📋 TODO List – JobNest Project
 
-## ✅ Fonctionnalités à améliorer
+- [X] Lorsqu’on crée un compte, être connecté directement après (là on crée mais on doit cliquer sur login pour se connecter)
+- [ ] Pouvoir créer/éditer des jobs experiences dans applicant profile
+- [ ] Lorsqu’on est pas connecté en tant que applicant et qu’on clique sur Apply, on est redirigé vers le login de applicant, mais lorsqu’on se log on est redirigé vers home → faire en sorte d’être redirigé vers l’offre où on était
 
-- Lors de la création d’un compte, connecter automatiquement l’utilisateur (au lieu de devoir cliquer sur login)
-- Ajouter la possibilité de **créer/éditer des job experiences** dans le profil de l’applicant
-- Quand un utilisateur non connecté (en tant qu'applicant) clique sur "Apply", le rediriger vers **l’offre précédente après login**, au lieu de revenir sur la home
+- [ ] Faire les flèches retours un peu partout
+- [ ] Améliorer le Swagger
+- [ ] Améliorer les données en BDD pour plus de cohérence :
+  - [ ] 20 jobs
+  - [ ] 5 companies (chacune 4 jobs)
+  - [ ] 3 applicants avec chacun 1 job experience
+  - [ ] Pas de applications (on fera ça devant le prof pour un fresh start)
 
-## 🔁 Navigation & UX
+- [x] Pouvoir cliquer sur l’entreprise liée au job et voir une page d’infos sur elle (Name, Industry, Number)
+- [x] Afficher l’entreprise liée au job dans le job-list et job-detail
 
-- Ajouter des **flèches de retour** sur les pages clés
+- [x] On a pas le sweet alert dans ces formulaires :
+  - [x] Apply (ajouter une alerte rouge lorsqu’on submit sans cover letter)
+  - [x] Applicant profile (se met pas en rouge lorsqu’on edit des trucs faux/vides)
+  - [x] Company profile (se met pas en rouge lorsqu’on edit des trucs faux/vides)
 
-## 🛠 Backend & Documentation
-
-- Améliorer la documentation **Swagger** (ex: descriptions, exemples, statuts HTTP, etc.)
-
-## 🧪 Base de Données – Jeu de données cohérent
-
-- Ajouter des données réalistes :
-  - 20 offres d’emploi
-  - 5 entreprises (chacune ayant 4 offres)
-  - 3 applicants (chacun avec une job experience)
-  - Aucune application initialement (pour pouvoir tester en live avec le prof)
-
+- [X] Mettre le footer partout et pas juste à home
+- [ ] Protéger les pages sensibles avec des fichiers `.guard.ts` (ex: `/my-postings`, `/profile`, etc.)

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray,FormControl } from '@angular/forms';
 import { ApplicantService } from '../../services/applicant.service';
 import Swal from 'sweetalert2';
+import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-applicant',
@@ -12,7 +14,10 @@ export class RegisterApplicantComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
 
-  constructor(private fb: FormBuilder, private applicantService: ApplicantService) { }
+  constructor(private fb: FormBuilder,
+              private applicantService: ApplicantService,
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -70,17 +75,38 @@ export class RegisterApplicantComponent implements OnInit {
     }
 
     const formData = this.registerForm.value;
+    const credentials = {
+      username: formData.username,
+      password: formData.password
+    };
 
     this.applicantService.register(formData).subscribe({
       next: () => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Account created!',
-          toast: true,
-          position: 'top-end',
-          timer: 2500,
-          showConfirmButton: false,
+        this.applicantService.login(credentials).subscribe({
+          next: (response) => {
+            this.authService.saveUserToLocalStorage({ ...response, role: 'applicant' });
+
+            Swal.fire({
+              icon: 'success',
+              title: 'Welcome !',
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500
+            });
+
+            this.router.navigate(['/']);
+          },
+          error: () => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Login failed',
+              text: 'Please log in manually.',
+              confirmButtonColor: '#dc3545'
+            });
+          }
         });
+
         this.registerForm.reset();
         this.experiences.clear();
         this.experiences.push(this.createExperienceGroup());
