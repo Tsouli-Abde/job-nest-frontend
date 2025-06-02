@@ -7,7 +7,7 @@
 - inclure aussi le cas où l’utilisateur **crée un compte** depuis cette page : après inscription, il doit également être redirigé vers la fiche de l’offre qu’il consultait.
 
 - [x] Faire les flèches retours un peu partout
-- [ ] Améliorer le Swagger
+- [x] Améliorer le Swagger
 - [x] Améliorer les données en BDD pour plus de cohérence :
   - [x] 20 jobs
   - [x] 5 companies (chacune 4 jobs)
