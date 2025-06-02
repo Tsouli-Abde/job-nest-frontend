@@ -50,6 +50,14 @@
     <!-- Job cards (right) -->
     <div class="col-md-9">
       <div class="job-grid">
+
+        <div *ngIf="jobs.length === 0" class="no-results-box">
+          <div class="text-center">
+            <i class="bi bi-emoji-frown icon"></i>
+            <p class="message">No Offers found</p>
+          </div>
+        </div>
+        
         <div *ngFor="let job of jobs" class="job-card" [routerLink]="['/jobs', job.id]">
           <h2>{{ job.title }}</h2>
           <p class="location">🏢 {{ job.companyName || 'Unknown Company' }}</p>
