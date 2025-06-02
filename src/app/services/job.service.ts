@@ -11,10 +11,6 @@ export class JobService {
 
   constructor(private http: HttpClient) { }
 
-  getJobs(): Observable<Job[]> {
-    return this.http.get<Job[]>(this.apiUrl);
-  }
-
   getJobsByCompany(companyId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/company/${companyId}`);
   }

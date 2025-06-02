@@ -9,10 +9,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class RegisterChoiceComponent {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
-  /*goToRecruiter() {
-    this.router.navigate(['/register-company'])
-  }*/
-
   goToApplicant() {
     const redirectTo = this.route.snapshot.queryParamMap.get('redirectTo') || '/';
     this.router.navigate(['/register-applicant'], { queryParams: { redirectTo } });

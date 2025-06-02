@@ -30,7 +30,6 @@ const routes: Routes = [
   { path: 'login-company', component: LoginComponent, data: { userType: 'company' } },
   { path: 'companies/:id', component: CompanyDetailComponent },
   { path: 'footer', component: FooterComponent },
-//guarded
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'post-job', component: AddJobComponent, canActivate: [CompanyGuard] },
   { path: 'jobs/:id/apply', component: ApplyFormComponent, canActivate: [ApplicantGuard] },

@@ -15,15 +15,7 @@ export class TopBarComponent {
     this.router.navigate(['/']);
   }
 
-  get isApplicant(): boolean {
-    return this.authService.getRole() === 'applicant';
-  }
-
   get isCompany(): boolean {
     return this.authService.getRole() === 'company';
-  }
-
-  get isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
   }
 }

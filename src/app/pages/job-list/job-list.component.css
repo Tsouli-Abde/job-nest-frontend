@@ -1,16 +1,16 @@
 .job-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 1.5rem;
-  padding: 2rem;
 }
 
 .job-card {
-  background: #ffffff;
+  background: #fbf7ef;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   padding: 1.5rem;
   transition: transform 0.3s;
+  border:1px solid #3f5765;
 }
 
 .job-card:hover {
@@ -69,7 +69,6 @@
 /* Container style */
 form.shadow-sm {
   background-color: #fdfbf6;
-  /* ton beige doux */
   border-radius: 1rem;
   padding: 1.5rem;
   border: 1px solid #eee;
@@ -131,30 +130,30 @@ form button.btn-primary:hover {
   font-size: 0.85rem;
 }
 
-.no-results-box {
+.no-results-wrapper {
   background-color: #fbf7ef;
-  border: 1px solid #e0e0e0;
-  padding: 2rem;
+  border: 1px solid #ececec;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.04);
-  width: 100%;
+  padding: 3rem 2rem;
   height: 100%;
   min-height: 500px;
-
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
-.no-results-box .icon {
-  font-size: 2rem;
+.no-results-content {
+  max-width: 480px;
+}
+
+.icon-large {
+  font-size: 3.5rem;
   color: #6d7549;
-  margin-bottom: 0.5rem;
+  animation: pulse 1.8s infinite ease-in-out;
 }
 
-.no-results-box .message {
-  font-weight: 500;
-  color: #333;
-  font-size: 1.1rem;
-  margin: 0;
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
 }

@@ -154,7 +154,7 @@ export class ProfileComponent implements OnInit {
     if (role === 'applicant') {
       const updatedData = {
         id: currentUser.id,
-        username: currentUser.username, // username is disabled in the form
+        username: currentUser.username,
         password: formValues.password,
         email: formValues.email,
         phoneNumber: formValues.phoneNumber,

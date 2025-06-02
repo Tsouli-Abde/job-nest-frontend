@@ -61,7 +61,7 @@
 
 .login-page-wrapper {
   height: 90vh;
-  background-color: #fbf7ef;
+  background-color: #ffffff;
   padding: 2rem;
 }
 
@@ -69,6 +69,7 @@
   max-width: 500px;
   width: 100%;
   background-color: #fdf9f0;
+  border:1px solid #3f5765;
   padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);

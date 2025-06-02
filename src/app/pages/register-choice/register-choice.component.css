@@ -1,9 +1,19 @@
+.register-choice-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: #ffffff;
+  padding: 1rem;
+}
+
 .register-choice-container {
   max-width: 500px;
-  margin: 80px auto;
+  width: 100%;
   text-align: center;
   padding: 30px;
-  background: #fdfdfd;
+  background: #fbf7ef;
+  border:1px solid #3f5765;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
