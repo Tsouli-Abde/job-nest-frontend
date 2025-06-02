@@ -1,33 +1,32 @@
-<div class="login-form-container">
-  <h2 class="form-title">Welcome Back</h2>
+<div class="login-page-wrapper d-flex align-items-center justify-content-center">
+  <div class="login-form-container">
+    <h2 class="form-title">Welcome Back</h2>
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="styled-form">
-
-    <div class="mb-3">
-      <label for="username" class="form-label fw-bold">Username</label>
-      <input id="username" type="text" class="form-control" formControlName="username"
-             [ngClass]="{ 'is-invalid': isSubmitted && loginForm.get('username')?.invalid }">
-      <div *ngIf="isSubmitted && loginForm.get('username')?.invalid" class="invalid-feedback">Username is required
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="styled-form">
+      <div class="mb-3">
+        <label for="username" class="form-label fw-bold">Username</label>
+        <input id="username" type="text" class="form-control" formControlName="username"
+               [ngClass]="{ 'is-invalid': isSubmitted && loginForm.get('username')?.invalid }">
+        <div *ngIf="isSubmitted && loginForm.get('username')?.invalid" class="invalid-feedback">Username is required</div>
       </div>
-    </div>
 
-    <div class="mb-3">
-      <label for="password" class="form-label fw-bold">Password</label>
-      <input id="password" type="password" class="form-control" formControlName="password"
-             [ngClass]="{ 'is-invalid': isSubmitted && loginForm.get('password')?.invalid }">
-      <div *ngIf="isSubmitted && loginForm.get('password')?.invalid" class="invalid-feedback">Password is required
+      <div class="mb-3">
+        <label for="password" class="form-label fw-bold">Password</label>
+        <input id="password" type="password" class="form-control" formControlName="password"
+               [ngClass]="{ 'is-invalid': isSubmitted && loginForm.get('password')?.invalid }">
+        <div *ngIf="isSubmitted && loginForm.get('password')?.invalid" class="invalid-feedback">Password is required</div>
       </div>
-    </div>
 
-    <button type="submit" class="btn submit-btn w-100">Login</button>
+      <button type="submit" class="btn submit-btn w-100">Login</button>
 
-    <div class="text-center mt-4 create-account-box">
-      <span class="text-muted">Don’t have an account ?</span>
-      <a [routerLink]="['/register-choice']"
-         [queryParams]="{ redirectTo: redirectTo }"
-         class="btn btn-outline-dark btn-sm ms-2 create-btn">
-        Create one
-      </a>
-    </div>
-  </form>
+      <div class="text-center mt-4 create-account-box">
+        <span class="text-muted">Don’t have an account ?</span>
+        <a [routerLink]="['/register-choice']"
+           [queryParams]="{ redirectTo: redirectTo }"
+           class="btn btn-outline-dark btn-sm ms-2 create-btn">
+          Create one
+        </a>
+      </div>
+    </form>
+  </div>
 </div>

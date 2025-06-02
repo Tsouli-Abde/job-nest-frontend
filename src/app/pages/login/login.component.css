@@ -58,3 +58,18 @@
   background-color: #3f5765;
   color: #fff;
 }
+
+.login-page-wrapper {
+  height: 90vh;
+  background-color: #fbf7ef;
+  padding: 2rem;
+}
+
+.login-form-container {
+  max-width: 500px;
+  width: 100%;
+  background-color: #fdf9f0;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
+}

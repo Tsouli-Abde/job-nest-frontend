@@ -11,6 +11,6 @@ export class AppComponent {
   constructor(public router: Router) {}
   showFooter(): boolean {
     const excludedRoutes = ['/applications', '/login', '/login-company', '/register-choice', '/company-jobs'];
-    return !excludedRoutes.includes(this.router.url);
+    return !excludedRoutes.some(route => this.router.url.startsWith(route));
   }
 }
