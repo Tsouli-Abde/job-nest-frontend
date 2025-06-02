@@ -8,11 +8,11 @@
 
 - [x] Faire les flèches retours un peu partout
 - [ ] Améliorer le Swagger
-- [ ] Améliorer les données en BDD pour plus de cohérence :
-  - [ ] 20 jobs
-  - [ ] 5 companies (chacune 4 jobs)
-  - [ ] 3 applicants avec chacun 1 job experience
-  - [ ] Pas de applications (on fera ça devant le prof pour un fresh start)
+- [x] Améliorer les données en BDD pour plus de cohérence :
+  - [x] 20 jobs
+  - [x] 5 companies (chacune 4 jobs)
+  - [x] 3 applicants avec chacun 1 job experience
+  - [x] Pas de applications (on fera ça devant le prof pour un fresh start)
 
 - [x] Pouvoir cliquer sur l’entreprise liée au job et voir une page d’infos sur elle (Name, Industry, Number)
 - [x] Afficher l’entreprise liée au job dans le job-list et job-detail
