@@ -7,5 +7,6 @@ export interface Company {
   industry?: string;
   username: string;
   password: string;
+  website: string;
   jobs?: Job[];
 }

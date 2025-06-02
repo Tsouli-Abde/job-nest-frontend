@@ -1,9 +1,16 @@
 <div class="company-detail-wrapper" *ngIf="company">
     <app-back-button></app-back-button>
     <h1>{{ company.companyName }}</h1>
-    <p><strong>Industry:</strong> {{ company.industry || 'Not specified' }}</p>
-    <p><strong>Phone:</strong> {{ company.phoneNumber || 'Not provided' }}</p>
-    <p><strong>Email:</strong> {{ company.email }}</p>
+    <p><strong>Industry :</strong> {{ company.industry || 'Not specified' }}</p>
+    <p><strong>Phone :</strong> {{ company.phoneNumber || 'Not provided' }}</p>
+    <p><strong>Email :</strong> {{ company.email }}</p>
+    <p class="company-website">
+        <strong>Website :</strong>
+        <a [href]="company.website" target="_blank" rel="noopener noreferrer" class="website-link">
+            {{ company.website }}
+            <span class="arrow">↗</span>
+        </a>
+    </p>
 
     <div *ngIf="jobs.length > 0" class="mt-5">
         <h3 class="mb-4 fw-bold text-dark">Job Offers from {{ company.companyName }}</h3>
