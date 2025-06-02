@@ -1,4 +1,5 @@
 <div class="company-detail-wrapper" *ngIf="company">
+    <app-back-button></app-back-button>
     <h1>{{ company.companyName }}</h1>
     <p><strong>Industry:</strong> {{ company.industry || 'Not specified' }}</p>
     <p><strong>Phone:</strong> {{ company.phoneNumber || 'Not provided' }}</p>

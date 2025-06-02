@@ -2,6 +2,7 @@
   <div class="job-detail-card">
 
         <div class="job-info">
+            <app-back-button></app-back-button>
             <h1 class="job-title">{{ job.title }}</h1>
             <div class="job-badges">
                 <span class="badge-info">
@@ -41,7 +42,6 @@
             </div>
 
             <p class="posted-date">Posted on : {{ job.postedAt | date:'longDate' }}</p>
-          <app-back-button></app-back-button>
         </div>
 
         <div class="job-map-column">
