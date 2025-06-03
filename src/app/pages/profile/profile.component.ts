@@ -35,21 +35,21 @@ export class ProfileComponent implements OnInit {
         experiences: this.fb.array([]),
         username: [{ value: user.username, disabled: true }],
         email: [user.email, [Validators.required, Validators.email]],
-        phoneNumber: [user.phoneNumber || '', Validators.required],
+        phoneNumber: [user.phoneNumber || ''],
         password: [user.password],
         firstName: [user.firstName, Validators.required],
         lastName: [user.lastName, Validators.required],
-        skills: [user.skills || '', Validators.required]
+        skills: [user.skills || '']
       });
       this.loadJobExperiences(user.id);
     } else {
       this.profileForm = this.fb.group({
         username: [{ value: user.username, disabled: true }],
         email: [user.email, [Validators.required, Validators.email]],
-        phoneNumber: [user.phoneNumber || '', Validators.required],
+        phoneNumber: [user.phoneNumber || ''],
         password: [user.password],
         companyName: [user.companyName, Validators.required],
-        industry: [user.industry || '', Validators.required]
+        industry: [user.industry || ''],
       });
     }
   }
