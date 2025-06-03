@@ -4,6 +4,7 @@ import { ApplicantService } from '../../services/applicant.service';
 import Swal from 'sweetalert2';
 import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import { usernameAvailableValidator } from '../../validators/async-validators';
 
 @Component({
   selector: 'app-register-applicant',
@@ -32,7 +33,7 @@ export class RegisterApplicantComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: [''],
       skills: [''],
-      username: ['', Validators.required],
+      username: ['', [Validators.required], [usernameAvailableValidator(this.applicantService)]],   
       password: ['', Validators.required],
       experiences: this.fb.array([])
     });

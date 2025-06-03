@@ -35,11 +35,22 @@
 
     <div class="mb-3">
       <label for="username" class="form-label fw-bold">Username</label>
-      <input id="username" type="text" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('username') }"
+      <input id="username" type="text" class="form-control"
+             [ngClass]="{
+               'is-invalid': isFieldInvalid('username') ||
+                             registerForm.get('username')?.hasError('usernameTaken')
+             }"
              formControlName="username">
-      <div class="invalid-feedback">Username is required.</div>
+    
+      <div class="invalid-feedback" *ngIf="registerForm.get('username')?.hasError('required') && (registerForm.get('username')?.touched || isSubmitted)">
+        Username is required.
+      </div>
+    
+      <div class="invalid-feedback" *ngIf="registerForm.get('username')?.hasError('usernameTaken') && registerForm.get('username')?.touched">
+        This username is already taken.
+      </div>
     </div>
-
+    
     <div class="mb-3">
       <label for="password" class="form-label fw-bold">Password</label>
       <input id="password" type="password" class="form-control" [ngClass]="{ 'is-invalid': isFieldInvalid('password') }"

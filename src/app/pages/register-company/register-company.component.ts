@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import {CompanyService} from "../../services/company.service";
 import {AuthService} from "../../services/auth.service";
+import { companyUsernameAvailableValidator } from '../../validators/async-validators';
 
 @Component({
   selector: 'app-register-company',
@@ -26,7 +27,7 @@ export class RegisterCompanyComponent implements OnInit {
       industry: [''],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: [''],
-      username: ['', Validators.required],
+      username: ['', [Validators.required], [companyUsernameAvailableValidator(this.companyService)]],      
       password: ['', Validators.required],
     });
   }

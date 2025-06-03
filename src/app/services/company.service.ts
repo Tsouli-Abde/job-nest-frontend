@@ -28,5 +28,11 @@ export class CompanyService {
 
   getCompanyById(id: string): Observable<Company> {
     return this.http.get<Company>(`${this.baseUrl}/${id}`);
+  }
+  
+  checkUsernameAvailability(username: string) {
+    return this.http.get<boolean>(`${this.baseUrl}/check-username`, {
+      params: { username }
+    });
   }  
 }

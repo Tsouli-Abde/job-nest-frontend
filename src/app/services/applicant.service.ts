@@ -24,4 +24,10 @@ export class ApplicantService {
   getApplicantById(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
+
+  checkUsernameAvailability(username: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/check-username`, {
+      params: { username }
+    });
+  }
 }
