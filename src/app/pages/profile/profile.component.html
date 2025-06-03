@@ -45,6 +45,14 @@
                 formControlName="companyName">
         </div>
 
+        <!-- Website (company only) -->
+        <div class="mb-3" *ngIf="!isApplicant">
+          <label for="website" class="form-label fw-semibold text-dark">Website</label>
+          <input type="text" id="website" class="form-control"
+                [ngClass]="{ 'is-invalid': profileForm.get('website')?.invalid && profileForm.get('website')?.touched }"
+                formControlName="website">
+        </div>
+
         <!-- Industry (company only) -->
         <div class="mb-3" *ngIf="!isApplicant">
           <label for="industry" class="form-label fw-semibold text-dark">Industry</label>

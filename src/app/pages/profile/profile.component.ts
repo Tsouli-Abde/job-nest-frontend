@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
         password: [user.password],
         companyName: [user.companyName, Validators.required],
         industry: [user.industry || ''],
+        website: [user.website || '']
       });
     }
   }
@@ -196,6 +197,7 @@ export class ProfileComponent implements OnInit {
         phoneNumber: formValues.phoneNumber,
         companyName: formValues.companyName,
         industry: formValues.industry,
+        website: formValues.website,
       };
 
       this.companyService.updateCompany(currentUser.id, updatedData).subscribe({
