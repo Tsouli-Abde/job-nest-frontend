@@ -84,10 +84,11 @@ export class ProfileComponent implements OnInit {
       }).then(result => {
         if (result.isConfirmed) {
           this.jobExperienceService.deleteJobExperience(experience.id).subscribe({
-            next: () => {
-              this.experiences.removeAt(index);
-              Swal.fire('Deleted!', 'Experience removed.', 'success');
-            },
+              next: () => {
+                Swal.fire('Deleted!', 'Experience removed.', 'success').then(() => {
+                  this.loadJobExperiences(this.authService.getCurrentUser().id);
+                });
+              },
             error: () => {
               Swal.fire('Error', 'Failed to delete experience.', 'error');
             }
@@ -103,6 +104,7 @@ export class ProfileComponent implements OnInit {
     this.jobExperienceService.getJobExperiencesByApplicant(applicantId)
       .subscribe({
         next: (data) => {
+          data.sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
           const formGroups = data.map(exp => this.fb.group({
             id: [exp.id],
             companyName: [exp.companyName],
