@@ -51,3 +51,8 @@
 .btn-primary:hover {
   background-color: #3d6480;
 }
+
+.badge.bg-info {
+  background-color: #0dcaf0 !important;
+  color: #000 !important;
+}

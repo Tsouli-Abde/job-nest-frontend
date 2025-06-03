@@ -27,7 +27,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     const user = this.authService.getCurrentUser();
     const role = this.authService.getRole();
-    console.log('Detected role:', role);
     this.isApplicant = role === 'applicant';
 
     if (this.isApplicant) {
@@ -67,7 +66,7 @@ export class ProfileComponent implements OnInit {
       startDate: [''],
       endDate: [''],
       description: ['']
-    });
+    }, { validators: this.validateDateRange.bind(this) });
     this.experiences.push(experienceGroup);
   }
 
@@ -75,45 +74,29 @@ export class ProfileComponent implements OnInit {
     const experience = this.experiences.at(index).value;
 
     if (experience.id) {
-      this.jobExperienceService.deleteJobExperience(experience.id).subscribe({
-        next: () => {
-          this.experiences.removeAt(index);
-          Swal.fire('Deleted', 'Experience removed.', 'success');
-        },
-        error: () => {
-          Swal.fire('Error', 'Failed to delete experience.', 'error');
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'This experience will be permanently deleted.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+      }).then(result => {
+        if (result.isConfirmed) {
+          this.jobExperienceService.deleteJobExperience(experience.id).subscribe({
+            next: () => {
+              this.experiences.removeAt(index);
+              Swal.fire('Deleted!', 'Experience removed.', 'success');
+            },
+            error: () => {
+              Swal.fire('Error', 'Failed to delete experience.', 'error');
+            }
+          });
         }
       });
     } else {
       this.experiences.removeAt(index);
     }
-  }
-
-  deleteExperience(index: number): void {
-    const experience = this.experiences.at(index).value;
-
-    if (!experience.id) return;
-
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'This experience will be permanently deleted.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel'
-    }).then(result => {
-      if (result.isConfirmed) {
-        this.jobExperienceService.deleteJobExperience(experience.id).subscribe({
-          next: () => {
-            this.experiences.removeAt(index);
-            Swal.fire('Deleted!', 'The experience has been removed.', 'success');
-          },
-          error: () => {
-            Swal.fire('Error', 'Failed to delete the experience.', 'error');
-          }
-        });
-      }
-    });
   }
 
   loadJobExperiences(applicantId: string): void {
@@ -127,11 +110,21 @@ export class ProfileComponent implements OnInit {
             description: [exp.description],
             startDate: [exp.startDate],
             endDate: [exp.endDate]
-          }));
+          }, { validators: this.validateDateRange.bind(this) }));
           this.profileForm.setControl('experiences', this.fb.array(formGroups));
         },
         error: (err) => console.error('Failed to load experiences:', err)
       });
+  }
+
+  validateDateRange(group: FormGroup): { [key: string]: any } | null {
+    const start = new Date(group.get('startDate')?.value);
+    const end = new Date(group.get('endDate')?.value);
+
+    if (start && end && end < start) {
+      return { invalidDateRange: true };
+    }
+    return null;
   }
 
   onSubmit(): void {
@@ -178,8 +171,9 @@ export class ProfileComponent implements OnInit {
           });
 
           Promise.all(saveExperiences.map((obs: Observable<any>) => lastValueFrom(obs))).then(() => {
-            Swal.fire('Saved!', 'Your profile and experiences have been updated.', 'success');
-          }).catch(() => {
+            Swal.fire('Saved!', 'Your profile and experiences have been updated.', 'success').then(() => {
+              window.location.reload();
+            });          }).catch(() => {
             Swal.fire('Error', 'Some experiences could not be saved.', 'error');
           });
         },
@@ -203,8 +197,9 @@ export class ProfileComponent implements OnInit {
       this.companyService.updateCompany(currentUser.id, updatedData).subscribe({
         next: (res) => {
           this.authService.setCurrentUser(res);
-          Swal.fire('Saved!', 'Your company profile has been updated.', 'success');
-        },
+          Swal.fire('Saved!', 'Your company profile has been updated.', 'success').then(() => {
+            window.location.reload();
+          });        },
         error: () => {
           Swal.fire('Error', 'Failed to update company profile.', 'error');
         }
