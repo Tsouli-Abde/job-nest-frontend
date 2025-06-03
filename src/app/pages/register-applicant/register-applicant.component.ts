@@ -34,7 +34,7 @@ export class RegisterApplicantComponent implements OnInit {
       skills: [''],
       username: ['', Validators.required],
       password: ['', Validators.required],
-      experiences: this.fb.array([this.createExperienceGroup()])
+      experiences: this.fb.array([])
     });
   }
 
@@ -81,6 +81,11 @@ export class RegisterApplicantComponent implements OnInit {
     }
 
     const formData = this.registerForm.value;
+
+    formData.experiences = formData.experiences.filter((exp: any) =>
+      exp.companyName || exp.position || exp.startDate || exp.endDate || exp.description
+    );
+
     const credentials = {
       username: formData.username,
       password: formData.password

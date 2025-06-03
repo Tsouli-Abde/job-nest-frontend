@@ -35,36 +35,55 @@
       <textarea id="skills" class="form-control" rows="3" formControlName="skills"></textarea>
     </div>
 
-    <div formArrayName="experiences" class="mb-4">
-      <label class="form-label fw-bold">Job Experience</label>
+    <div formArrayName="experiences" class="mt-5">
+      <h3 class="fw-bold text-dark mb-4">Job Experiences</h3>
 
-      <div *ngFor="let exp of experiences.controls; let i = index" [formGroupName]="i" class="border rounded p-3 mb-3">
-        <div class="mb-2">
-          <label class="form-label">Company Name</label>
-          <input type="text" class="form-control" formControlName="companyName" placeholder="e.g. Google">
-        </div>
-        <div class="mb-2">
-          <label class="form-label">Position</label>
-          <input type="text" class="form-control" formControlName="position" placeholder="e.g. Software Engineer">
-        </div>
-        <div class="mb-2">
-          <label class="form-label">Start Date</label>
-          <input type="date" class="form-control" formControlName="startDate">
-        </div>
-        <div class="mb-2">
-          <label class="form-label">End Date</label>
-          <input type="date" class="form-control" formControlName="endDate">
-        </div>
-        <div class="mb-2">
-          <label class="form-label">Description</label>
-          <textarea class="form-control" rows="2" formControlName="description" placeholder="Optional description..."></textarea>
-        </div>
-        <div class="text-end">
-          <button type="button" class="btn btn-sm btn-outline-danger" (click)="removeExperience(i)" *ngIf="experiences.length > 1">Remove</button>
+      <div *ngFor="let exp of experiences.controls; let i = index" [formGroupName]="i" class="card mb-4 shadow-sm border">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start">
+            <h5 class="card-title mb-3 text-dark">Experience {{ i + 1 }}</h5>
+            <button
+              type="button"
+              class="btn btn-link text-danger p-0"
+              (click)="removeExperience(i)">
+              <i class="bi bi-trash-fill fs-5" title="Remove experience"></i>
+            </button>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold text-dark">Company</label>
+              <input formControlName="companyName" class="form-control" type="text" placeholder="e.g. Microsoft">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold text-dark">Position</label>
+              <input formControlName="position" class="form-control" type="text" placeholder="e.g. Frontend Developer">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold text-dark">Start Date</label>
+              <input formControlName="startDate" class="form-control" type="date">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-semibold text-dark">End Date</label>
+              <input formControlName="endDate" class="form-control" type="date">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold text-dark">Description</label>
+            <textarea formControlName="description" class="form-control" rows="3" placeholder="Optional description..."></textarea>
+          </div>
         </div>
       </div>
 
-      <button type="button" class="btn btn-outline-primary btn-sm" (click)="addExperience()">+ Add another experience</button>
+      <div class="text-end mb-4">
+        <button type="button" class="btn btn-outline-success btn-sm add-exp-btn" (click)="addExperience()">
+          + Add Experience
+        </button>
+      </div>
     </div>
 
     <div class="mb-3">
