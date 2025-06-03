@@ -65,6 +65,9 @@
             <div class="col-md-6 mb-3">
               <label class="form-label fw-semibold text-dark">Start Date</label>
               <input formControlName="startDate" class="form-control" type="date">
+              <div class="text-danger small mt-1" *ngIf="exp.errors?.['invalidDateRange'] && (exp.touched || submitted)">
+                Start date must be before or equal to end date.
+              </div>
             </div>
             <div class="col-md-6 mb-3">
               <label class="form-label fw-semibold text-dark">End Date</label>

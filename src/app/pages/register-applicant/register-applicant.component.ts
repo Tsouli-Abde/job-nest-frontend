@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { ApplicantService } from '../../services/applicant.service';
 import Swal from 'sweetalert2';
 import {AuthService} from "../../services/auth.service";
@@ -44,13 +44,26 @@ export class RegisterApplicantComponent implements OnInit {
   }
 
   createExperienceGroup(): FormGroup {
-    return this.fb.group({
-      companyName: ['', Validators.required],
-      position: ['', Validators.required],
-      description: [''],
-      startDate: ['', Validators.required],
-      endDate: ['']
-    });
+    return this.fb.group(
+      {
+        companyName: ['', Validators.required],
+        position: ['', Validators.required],
+        description: [''],
+        startDate: ['', Validators.required],
+        endDate: ['', Validators.required]
+      },
+      { validators: this.validateDateRange }
+    );
+  }
+
+  validateDateRange(group: AbstractControl): { [key: string]: any } | null {
+    const start = new Date(group.get('startDate')?.value);
+    const end = new Date(group.get('endDate')?.value);
+
+    if (start && end && start > end) {
+      return { invalidDateRange: true };
+    }
+    return null;
   }
 
   addExperience(): void {
@@ -68,11 +81,12 @@ export class RegisterApplicantComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-    if (this.registerForm.invalid) {
+
+    if (this.registerForm.invalid || this.experiences.invalid) {
       Swal.fire({
         icon: 'warning',
         title: 'Incomplete form',
-        text: 'Please fill all required fields',
+        text: 'Please fill all required fields and correct any errors',
         position: 'top-end',
         toast: true,
         timer: 3000,
