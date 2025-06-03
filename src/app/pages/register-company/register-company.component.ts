@@ -26,7 +26,7 @@ export class RegisterCompanyComponent implements OnInit {
       website: [''],
       industry: [''],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: [''],
+      phoneNumber: ['', [Validators.pattern('^[0-9]*$')]],
       username: ['', [Validators.required], [companyUsernameAvailableValidator(this.companyService)]],      
       password: ['', Validators.required],
     });

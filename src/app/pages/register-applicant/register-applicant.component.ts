@@ -31,7 +31,7 @@ export class RegisterApplicantComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: [''],
+      phoneNumber: ['', [Validators.pattern('^[0-9]*$')]],
       skills: [''],
       username: ['', [Validators.required], [usernameAvailableValidator(this.applicantService)]],   
       password: ['', Validators.required],

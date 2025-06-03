@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
         experiences: this.fb.array([]),
         username: [{ value: user.username, disabled: true }],
         email: [user.email, [Validators.required, Validators.email]],
-        phoneNumber: [user.phoneNumber || ''],
+        phoneNumber: [user.phoneNumber || '', [Validators.pattern('^[0-9]*$')]],
         password: [user.password],
         firstName: [user.firstName, Validators.required],
         lastName: [user.lastName, Validators.required],
@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
       this.profileForm = this.fb.group({
         username: [{ value: user.username, disabled: true }],
         email: [user.email, [Validators.required, Validators.email]],
-        phoneNumber: [user.phoneNumber || ''],
+        phoneNumber: [user.phoneNumber || '', [Validators.pattern('^[0-9]*$')]],
         password: [user.password],
         companyName: [user.companyName, Validators.required],
         industry: [user.industry || ''],
